@@ -8,5 +8,10 @@
     <li>
         <hr>
     </li>
-    <li><a href="#">Test</a></li>
+    <!--  -->
+    <% if buffet_owner_signed_in? %>
+        <% if @buffet.valid? %>
+            <li><%= link_to 'Meu buffet', buffet_path(@buffet) %></li>
+        <% end %>
+    <% end %>
 </ul>

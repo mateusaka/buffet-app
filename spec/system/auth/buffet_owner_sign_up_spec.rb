@@ -11,6 +11,7 @@ describe 'Dono de buffet cria conta' do
     fill_in 'Password confirmation', with: '123456'
     click_on 'Sign up'
 
+    expect(page).to have_content 'Bem vindo! Você realizou seu registro com sucesso.'
     expect(page).to have_content 'mateus@gmail.com'
     expect(page).to have_button 'Sair'
     user = BuffetOwner.last

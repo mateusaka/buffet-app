@@ -1,0 +1,64 @@
+<h1>Cadastrar Buffet</h1>
+
+<% if(@buffet.errors.any?) %>
+    <p>Erros:</p>
+    <ul>
+        <% @buffet.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<%= form_with(model: @buffet) do |form| %>
+    <div>
+        <%= form.label :brand_name %> <br>
+        <%= form.text_field :brand_name %>
+    </div>
+    <div>
+        <%= form.label :corporate_name %> <br>
+        <%= form.text_field :corporate_name %>
+    </div>
+    <div>
+        <%= form.label :cnpj %> <br>
+        <%= form.text_field :cnpj %>
+    </div>
+    <div>
+        <%= form.label :phone %> <br>
+        <%= form.text_field :phone %>
+    </div>
+    <div>
+        <%= form.label :email %> <br>
+        <%= form.text_field :email %>
+    </div>
+    <div>
+        <%= form.label :address %> <br>
+        <%= form.text_field :address %>
+    </div>
+    <div>
+        <%= form.label :district %> <br>
+        <%= form.text_field :district %>
+    </div>
+    <div>
+        <%= form.label :city %> <br>
+        <%= form.text_field :city %>
+    </div>
+    <div>
+        <%= form.label :state %> <br>
+        <%= form.text_field :state %>
+    </div>
+    <div>
+        <%= form.label :cep %> <br>
+        <%= form.text_field :cep %>
+    </div>
+    <div>
+        <%= form.label :description %> <br>
+        <%= form.text_area :description %>
+    </div>
+    <div class="mb-2">
+        <%= form.label :payment_method %> <br>
+        <%= form.text_field :payment_method %>
+    </div>
+    <div>
+        <%= form.submit %>
+    </div>
+<% end %>

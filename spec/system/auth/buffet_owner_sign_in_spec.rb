@@ -31,4 +31,20 @@ describe 'Dono de buffet entra' do
     expect(page).not_to have_content 'mateus@gmail.com'
     expect(page).to have_content 'Entrar'
   end
+
+  it 'e caso não tenha buffet cadastrado redireciona para a pagina de cadastro' do
+    buffet_owner = BuffetOwner.create!(
+      name: 'Mateus Buffet Owner',
+      email: 'mateus@gmail.com',
+      password: '123456'
+    )
+
+    login_as(buffet_owner, scope: :buffet_owner)
+    visit root_path
+
+    user = BuffetOwner.last
+    if !user.buffet
+      expect(current_path).to eq new_buffet_path
+    end
+  end
 end

@@ -1,0 +1,25 @@
+<h1>Buffet <%= @buffet.brand_name %></h1>
+<h2><%= @buffet.corporate_name %> | <%= @buffet.cnpj %></h2>
+
+<dl>
+    <dt>Nome fantasia</dt>
+    <dd><%= @buffet.brand_name %></dd>
+    <dt>Razão social</dt>
+    <dd><%= @buffet.corporate_name %></dd>
+    <dt>CNPJ</dt>
+    <dd><%= @buffet.cnpj %></dd>
+    <dt>Telefone</dt>
+    <dd><%= @buffet.phone %></dd>
+    <dt>Email</dt>
+    <dd><%= @buffet.email %></dd>
+    <dt>Endereço completo</dt>
+    <dd><%= @buffet.address %> | <%= @buffet.district %> - <%= @buffet.city %> - <%= @buffet.state %> | <%= @buffet.cep %></dd>
+    <dt>Método de pagamento</dt>
+    <dd><%= @buffet.payment_method %></dd>
+</dl>
+
+<hr>
+
+<div>
+    <%= link_to('Editar', edit_buffet_path(@buffet)) %>
+</div>
