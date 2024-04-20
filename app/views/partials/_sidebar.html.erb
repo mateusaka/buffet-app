@@ -10,8 +10,10 @@
     </li>
     <!--  -->
     <% if buffet_owner_signed_in? %>
-        <% if @buffet.valid? %>
-            <li><%= link_to 'Meu buffet', buffet_path(@buffet) %></li>
+        <% if current_buffet_owner.buffet %>
+            <% if current_buffet_owner.buffet.valid? %>
+                <li><%= link_to 'Meu buffet', buffet_path(current_buffet_owner.buffet) %></li>
+            <% end %>
         <% end %>
     <% end %>
 </ul>
