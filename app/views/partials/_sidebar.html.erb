@@ -13,6 +13,10 @@
         <% if current_buffet_owner.buffet %>
             <% if current_buffet_owner.buffet.valid? %>
                 <li><%= link_to 'Meu buffet', buffet_path(current_buffet_owner.buffet) %></li>
+                <li><%= link_to 'Novo evento', new_event_path %></li>
+                <% if current_buffet_owner.buffet.events.any? %>
+                    <li><%= link_to 'Meus eventos', events_path %></li>
+                <% end %>
             <% end %>
         <% end %>
     <% end %>

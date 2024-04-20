@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_19_160424) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_20_193010) do
   create_table "buffet_owners", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -43,5 +43,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_19_160424) do
     t.index ["buffet_owner_id"], name: "index_buffets_on_buffet_owner_id"
   end
 
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "min_quantity"
+    t.integer "max_quantity"
+    t.integer "duration"
+    t.text "menu"
+    t.boolean "alcoholic_drink"
+    t.boolean "party_decoration"
+    t.boolean "valet_service"
+    t.integer "buffet_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "local"
+    t.index ["buffet_id"], name: "index_events_on_buffet_id"
+  end
+
   add_foreign_key "buffets", "buffet_owners"
+  add_foreign_key "events", "buffets"
 end

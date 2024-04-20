@@ -1,5 +1,6 @@
 class Buffet < ApplicationRecord
   belongs_to :buffet_owner
+  has_many :events
 
   validates :brand_name, :corporate_name, :cnpj, :phone,
             :email, :address, :district, :state, :city, :cep,

@@ -3,6 +3,7 @@ pt-BR:
     models:
       buffet: Buffet
       buffet_owner: Dono de Buffet
+      event: Evento
     attributes:
       buffet:
         brand_name: Nome fantasia
@@ -17,3 +18,13 @@ pt-BR:
         cep: CEP
         description: Descrição
         payment_method: Método de pagamento
+      event:
+        name: Nome
+        description: Descrição
+        min_quantity: Quantidade mínima de pessoas
+        max_quantity: Quantidade máxima de pessoas
+        duration: Duração(minutos)
+        menu: Cardápio
+        alcoholic_drink: Bebida alcoólica
+        party_decoration: Decoração
+        valet_service: Serviço de valet

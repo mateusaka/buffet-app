@@ -1,0 +1,56 @@
+<h1>Cadastrar Evento</h1>
+
+<% if(@event.errors.any?) %>
+    <p>Erros:</p>
+    <ul>
+        <% @event.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<%= form_with(model: @event) do |form| %>
+    <div>
+        <%= form.label :name %> <br>
+        <%= form.text_field :name %>
+    </div>
+    <div>
+        <%= form.label :description %> <br>
+        <%= form.text_area :description %>
+    </div>
+    <div>
+        <%= form.label :min_quantity %> <br>
+        <%= form.number_field :min_quantity %>
+    </div>
+    <div>
+        <%= form.label :max_quantity %> <br>
+        <%= form.number_field :max_quantity %>
+    </div>
+    <div>
+        <%= form.label :duration %> <br>
+        <%= form.number_field :duration %>
+    </div>
+    <div>
+        <%= form.label :menu %> <br>
+        <%= form.text_area :menu %>
+    </div>
+    <div>
+        <%= form.label :alcoholic_drink %> <br>
+        <%= form.check_box :alcoholic_drink %>
+    </div>
+    <div>
+        <%= form.label :party_decoration %> <br>
+        <%= form.check_box :party_decoration %>
+    </div>
+    <div>
+        <%= form.label :valet_service %> <br>
+        <%= form.check_box :valet_service %>
+    </div>
+    <div class="mb-2">
+        <%= form.label :local, 'Informações sobre o local do evento. No endereço do Buffet ou do contratante' %> <br>
+        <%= form.text_field :local %>
+    </div>
+    <div>
+        <%= form.submit %>
+    </div>
+<% end %>

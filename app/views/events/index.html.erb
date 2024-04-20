@@ -1,0 +1,17 @@
+<h1>Eventos</h1>
+
+<% if @events.empty? %>
+    <p>Não há eventos</p>
+<% else %>
+    <% @events.each do |event| %>
+        <div>
+            <dl>
+                <dt>Nome</dt>
+                <dd><%= link_to event.name, event_path(event) %></dd>
+                <dt>Descrição</dt>
+                <dd><%= event.description %></dd>
+            </dl>
+        </div>
+        <hr>
+    <% end %>
+<% end %>
