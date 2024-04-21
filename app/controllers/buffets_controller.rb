@@ -3,7 +3,7 @@ class BuffetsController < ApplicationController
 
   def new
     if current_buffet_owner.buffet
-      return redirect_to root_path
+      return redirect_to current_buffet_owner.buffet
     end
 
     @buffet = Buffet.new
@@ -11,7 +11,7 @@ class BuffetsController < ApplicationController
 
   def create
     if current_buffet_owner.buffet
-      return redirect_to root_path
+      return redirect_to current_buffet_owner.buffet
     end
 
     @buffet = Buffet.new(params.require(:buffet).permit(
