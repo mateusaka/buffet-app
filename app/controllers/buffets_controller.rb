@@ -39,15 +39,33 @@ class BuffetsController < ApplicationController
   end
 
   def show
-    @buffet = Buffet.find(params[:id])
+    check_buffet = Buffet.find(params[:id])
+
+    if check_buffet != current_buffet_owner.buffet
+      return redirect_to unauthorized_path
+    end
+
+    @buffet = check_buffet
   end
 
   def edit
-    @buffet = Buffet.find(params[:id])
+    check_buffet = Buffet.find(params[:id])
+
+    if check_buffet != current_buffet_owner.buffet
+      return redirect_to unauthorized_path
+    end
+
+    @buffet = check_buffet
   end
 
   def update
-    @buffet = Buffet.find(params[:id])
+    check_buffet = Buffet.find(params[:id])
+
+    if check_buffet != current_buffet_owner.buffet
+      return redirect_to unauthorized_path
+    end
+
+    @buffet = check_buffet
 
     if @buffet.update(params.require(:buffet).permit(
       :brand_name,

@@ -45,6 +45,12 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
+    check_event = Event.find(params[:id])
+
+    if !current_buffet_owner.buffet.events.include?(check_event)
+      return redirect_to unauthorized_path
+    end
+
+    @event = check_event
   end
 end

@@ -136,7 +136,7 @@ describe 'Dono de buffet cadastra um buffet' do
     click_on 'Criar Buffet'
     visit new_buffet_path
 
-    expect(page).not_to have_link 'Criar Buffet'
-    expect(page).to have_content 'Cade Buffet?'
+    expect(page).not_to have_link 'Cadastrar Buffet'
+    expect(page).to have_content 'ABC omidas'
   end
 end
