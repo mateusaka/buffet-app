@@ -91,25 +91,26 @@ describe 'Dono de buffet cadastra um buffet' do
       password: '123456'
     )
 
+    buffet = Buffet.create!(
+      brand_name: 'ABC omidas',
+      corporate_name: 'Buffet ABC',
+      cnpj: '112233-4444',
+      phone: '(81) 987658866',
+      email: 'abc@buffet.com',
+      address: 'Avenida das comidas',
+      district: 'Macaxeira',
+      state: 'Pernambuco',
+      city: 'Jaboatão',
+      cep: '52050-333',
+      description: 'Um buffet que cobra por prato quebrado',
+      payment_method: 'PIX',
+      buffet_owner: buffet_owner
+    )
+
     login_as(buffet_owner, scope: :buffet_owner)
-    visit root_path
-    fill_in 'Nome fantasia', with: 'ABC omidas'
-    fill_in 'Razão social', with: 'Buffet ABC'
-    fill_in 'CNPJ', with: '112233-4444'
-    fill_in 'Telefone', with: '(81) 987658866'
-    fill_in 'Email', with: 'abc@buffet.com'
-    fill_in 'Endereço', with: 'Avenida das comidas'
-    fill_in 'Bairro', with: 'Macaxeira'
-    fill_in 'Cidade', with: 'Jaboatão'
-    fill_in 'Estado', with: 'Pernambuco'
-    fill_in 'CEP', with: '52050-333'
-    fill_in 'Descrição', with: 'Um buffet que cobra por prato quebrado'
-    fill_in 'Método de pagamento', with: 'PIX'
-    click_on 'Criar Buffet'
     visit root_path
 
     expect(page).not_to have_link 'Criar Buffet'
-    expect(page).to have_content 'Cade Buffet?'
   end
 
   it 'com um buffet já existente a partir do path' do
@@ -119,21 +120,24 @@ describe 'Dono de buffet cadastra um buffet' do
       password: '123456'
     )
 
+    buffet = Buffet.create!(
+      brand_name: 'ABC omidas',
+      corporate_name: 'Buffet ABC',
+      cnpj: '112233-4444',
+      phone: '(81) 987658866',
+      email: 'abc@buffet.com',
+      address: 'Avenida das comidas',
+      district: 'Macaxeira',
+      state: 'Pernambuco',
+      city: 'Jaboatão',
+      cep: '52050-333',
+      description: 'Um buffet que cobra por prato quebrado',
+      payment_method: 'PIX',
+      buffet_owner: buffet_owner
+    )
+
     login_as(buffet_owner, scope: :buffet_owner)
     visit root_path
-    fill_in 'Nome fantasia', with: 'ABC omidas'
-    fill_in 'Razão social', with: 'Buffet ABC'
-    fill_in 'CNPJ', with: '112233-4444'
-    fill_in 'Telefone', with: '(81) 987658866'
-    fill_in 'Email', with: 'abc@buffet.com'
-    fill_in 'Endereço', with: 'Avenida das comidas'
-    fill_in 'Bairro', with: 'Macaxeira'
-    fill_in 'Cidade', with: 'Jaboatão'
-    fill_in 'Estado', with: 'Pernambuco'
-    fill_in 'CEP', with: '52050-333'
-    fill_in 'Descrição', with: 'Um buffet que cobra por prato quebrado'
-    fill_in 'Método de pagamento', with: 'PIX'
-    click_on 'Criar Buffet'
     visit new_buffet_path
 
     expect(page).not_to have_link 'Cadastrar Buffet'
