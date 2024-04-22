@@ -35,7 +35,10 @@ describe 'Dono de buffet vê detalhes de um evento' do
       party_decoration: false,
       valet_service: false,
       local: 'Local do contratante',
-      buffet: buffet
+      buffet: buffet,
+      weekend_base_price: 120,
+      weekend_additional_price_person: 50,
+      weekend_additional_price_hour: 30
     )
 
     second_event = Event.create!(
@@ -49,7 +52,10 @@ describe 'Dono de buffet vê detalhes de um evento' do
       party_decoration: true,
       valet_service: false,
       local: 'Local do contratante',
-      buffet: buffet
+      buffet: buffet,
+      weekday_base_price: 300,
+      weekday_additional_price_person: 90,
+      weekday_additional_price_hour: 10
     )
 
     login_as(buffet_owner, scope: :buffet_owner)
@@ -59,6 +65,9 @@ describe 'Dono de buffet vê detalhes de um evento' do
 
     expect(page).not_to have_content 'Meu Evento Dois'
     expect(page).not_to have_content 'Um evento que tem o número dois'
+    expect(page).not_to have_content '$ 300'
+    expect(page).not_to have_content '$ 90'
+    expect(page).not_to have_content '$ 10'
     expect(page).to have_content 'Super Evento'
     expect(page).to have_content 'Super descrição'
     expect(page).to have_content '10 - 20'
@@ -68,6 +77,9 @@ describe 'Dono de buffet vê detalhes de um evento' do
     expect(page).to have_content 'Decoração ❌ Não'
     expect(page).to have_content 'Serviço de valete ❌ Não'
     expect(page).to have_content 'Local do contratante'
+    expect(page).to have_content '$ 120'
+    expect(page).to have_content '$ 50'
+    expect(page).to have_content '$ 30'
   end
 
   it 'e volta para a tela inicial' do
@@ -104,7 +116,10 @@ describe 'Dono de buffet vê detalhes de um evento' do
       party_decoration: false,
       valet_service: false,
       local: 'Local do contratante',
-      buffet: buffet
+      buffet: buffet,
+      weekend_base_price: 120,
+      weekend_additional_price_person: 50,
+      weekend_additional_price_hour: 30
     )
 
     login_as(buffet_owner, scope: :buffet_owner)
@@ -116,6 +131,7 @@ describe 'Dono de buffet vê detalhes de um evento' do
     expect(current_path).to eq root_path
     expect(page).not_to have_content 'Super Evento'
     expect(page).not_to have_content 'Super descrição'
+    expect(page).not_to have_content '$ 50'
     expect(page).to have_content 'Cade Buffet?'
   end
 end

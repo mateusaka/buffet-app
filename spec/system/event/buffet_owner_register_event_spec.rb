@@ -73,6 +73,9 @@ describe 'Dono de buffet cadastra um evento' do
     fill_in 'Cardápio', with: 'Lagosta'
     page.check 'Bebida alcoólica'
     fill_in 'Informações sobre o local do evento. No endereço do Buffet ou do contratante', with: 'Local do contratante'
+    fill_in 'Preço base(final de semana)', with: 120
+    fill_in 'Preço adicional por pessoa(final de semana)', with: 10
+    fill_in 'Preço adicional por hora(final de semana)', with: 20
     click_on 'Criar Evento'
 
     expect(page).not_to have_content 'Erro ao cadastrar evento'
@@ -86,6 +89,9 @@ describe 'Dono de buffet cadastra um evento' do
     expect(page).to have_content 'Decoração ❌ Não'
     expect(page).to have_content 'Serviço de valete ❌ Não'
     expect(page).to have_content 'Local do contratante'
+    expect(page).to have_content '$ 120'
+    expect(page).to have_content '$ 10'
+    expect(page).to have_content '$ 20'
   end
 
   it 'com dados incompletos' do

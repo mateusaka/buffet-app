@@ -35,7 +35,10 @@ describe 'Dono de buffet vê os seus eventos' do
       party_decoration: false,
       valet_service: false,
       local: 'Local do contratante',
-      buffet: buffet
+      buffet: buffet,
+      weekend_base_price: 120,
+      weekend_additional_price_person: 50,
+      weekend_additional_price_hour: 30
     )
 
     login_as(buffet_owner, scope: :buffet_owner)

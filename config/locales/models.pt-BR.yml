@@ -19,6 +19,7 @@ pt-BR:
         description: Descrição
         payment_method: Método de pagamento
       event:
+        weekend_and_or_weekday_validate: Final de semana e/ou dia de semana
         name: Nome
         description: Descrição
         min_quantity: Quantidade mínima de pessoas
@@ -28,3 +29,9 @@ pt-BR:
         alcoholic_drink: Bebida alcoólica
         party_decoration: Decoração
         valet_service: Serviço de valet
+        weekend_base_price: Preço base(final de semana)
+        weekend_additional_price_person: Preço adicional por pessoa(final de semana)
+        weekend_additional_price_hour: Preço adicional por hora(final de semana)
+        weekday_base_price: Preço base(dia de semana)
+        weekday_additional_price_person: Preço adicional por pessoa(dia de semana)
+        weekday_additional_price_hour: Preço adicional por hora(dia de semana)

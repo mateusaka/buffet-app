@@ -32,7 +32,13 @@ class EventsController < ApplicationController
       :alcoholic_drink,
       :party_decoration,
       :valet_service,
-      :local
+      :local,
+      :weekend_base_price,
+      :weekend_additional_price_person,
+      :weekend_additional_price_hour,
+      :weekday_base_price,
+      :weekday_additional_price_person,
+      :weekday_additional_price_hour
     ))
     @event.buffet = current_buffet_owner.buffet
 

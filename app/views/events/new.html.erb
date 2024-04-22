@@ -34,23 +34,47 @@
         <%= form.label :menu %> <br>
         <%= form.text_area :menu %>
     </div>
-    <div>
-        <%= form.label :alcoholic_drink %> <br>
+    <div class="d-flex align-items-center">
+        <%= form.label :alcoholic_drink, class: 'm-2' %>
         <%= form.check_box :alcoholic_drink %>
     </div>
-    <div>
-        <%= form.label :party_decoration %> <br>
+    <div class="d-flex align-items-center">
+        <%= form.label :party_decoration, class: 'm-2' %>
         <%= form.check_box :party_decoration %>
     </div>
-    <div>
-        <%= form.label :valet_service %> <br>
+    <div class="d-flex align-items-center">
+        <%= form.label :valet_service, class: 'm-2' %>
         <%= form.check_box :valet_service %>
     </div>
-    <div class="mb-2">
+    <div>
         <%= form.label :local, 'Informações sobre o local do evento. No endereço do Buffet ou do contratante' %> <br>
         <%= form.text_field :local %>
     </div>
     <div>
+        <%= form.label :weekend_base_price %> <br>
+        <%= form.number_field :weekend_base_price, step: 0.01 %>
+    </div>
+    <div>
+        <%= form.label :weekend_additional_price_person %> <br>
+        <%= form.number_field :weekend_additional_price_person %>
+    </div>
+    <div>
+        <%= form.label :weekend_additional_price_hour %> <br>
+        <%= form.number_field :weekend_additional_price_hour %>
+    </div>
+    <div>
+        <%= form.label :weekday_base_price %> <br>
+        <%= form.number_field :weekday_base_price %>
+    </div>
+    <div>
+        <%= form.label :weekday_additional_price_person %> <br>
+        <%= form.number_field :weekday_additional_price_person %>
+    </div>
+    <div>
+        <%= form.label :weekday_additional_price_hour %> <br>
+        <%= form.number_field :weekday_additional_price_hour %>
+    </div>
+    <div class="my-2">
         <%= form.submit %>
     </div>
 <% end %>

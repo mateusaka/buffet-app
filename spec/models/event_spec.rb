@@ -282,4 +282,325 @@ RSpec.describe Event, type: :model do
       expect(result).to eq false
     end
   end
+
+  describe '#check_weekend_and_weekday' do
+    it 'falso quando weekend está preenchido e weekday está incompleto' do
+      buffet_owner = BuffetOwner.new(
+        name: 'Mateus Buffet Owner',
+        email: 'mateus@gmail.com',
+        password: '123456'
+      )
+
+      buffet = Buffet.new(
+        brand_name: 'ABC omidas',
+        corporate_name: 'Buffet ABC',
+        cnpj: '112233-4444',
+        phone: '(81) 987658866',
+        email: 'abc@buffet.com',
+        address: 'Avenida das comidas',
+        district: 'Macaxeira',
+        state: 'Pernambuco',
+        city: 'Jaboatão',
+        cep: '52050-333',
+        description: 'Um buffet que cobra por prato quebrado',
+        payment_method: 'PIX',
+        buffet_owner: buffet_owner
+      )
+
+      event = Event.new(
+        name: 'Super Evento',
+        description: 'Super descrição',
+        min_quantity: 10,
+        max_quantity: 20,
+        duration: 60,
+        menu: 'Lagosta',
+        alcoholic_drink: true,
+        party_decoration: false,
+        valet_service: false,
+        local: 'Local do contratante',
+        buffet: buffet,
+        weekend_base_price: 120,
+        weekend_additional_price_person: 50,
+        weekend_additional_price_hour: 30,
+        weekday_base_price: 300
+      )
+
+      result = event.valid?
+
+      expect(result).to eq false
+    end
+
+    it 'falso quando weekday está preenchido e weekend está incompleto' do
+      buffet_owner = BuffetOwner.new(
+        name: 'Mateus Buffet Owner',
+        email: 'mateus@gmail.com',
+        password: '123456'
+      )
+
+      buffet = Buffet.new(
+        brand_name: 'ABC omidas',
+        corporate_name: 'Buffet ABC',
+        cnpj: '112233-4444',
+        phone: '(81) 987658866',
+        email: 'abc@buffet.com',
+        address: 'Avenida das comidas',
+        district: 'Macaxeira',
+        state: 'Pernambuco',
+        city: 'Jaboatão',
+        cep: '52050-333',
+        description: 'Um buffet que cobra por prato quebrado',
+        payment_method: 'PIX',
+        buffet_owner: buffet_owner
+      )
+
+      event = Event.new(
+        name: 'Super Evento',
+        description: 'Super descrição',
+        min_quantity: 10,
+        max_quantity: 20,
+        duration: 60,
+        menu: 'Lagosta',
+        alcoholic_drink: true,
+        party_decoration: false,
+        valet_service: false,
+        local: 'Local do contratante',
+        buffet: buffet,
+        weekend_base_price: 120,
+        weekend_additional_price_person: 50,
+        weekday_base_price: 300,
+        weekday_additional_price_person: 10,
+        weekday_additional_price_hour: 35
+      )
+
+      result = event.valid?
+
+      expect(result).to eq false
+    end
+
+    it 'falso quando weekdend está incompleto e weekday está incompleto' do
+      buffet_owner = BuffetOwner.new(
+        name: 'Mateus Buffet Owner',
+        email: 'mateus@gmail.com',
+        password: '123456'
+      )
+
+      buffet = Buffet.new(
+        brand_name: 'ABC omidas',
+        corporate_name: 'Buffet ABC',
+        cnpj: '112233-4444',
+        phone: '(81) 987658866',
+        email: 'abc@buffet.com',
+        address: 'Avenida das comidas',
+        district: 'Macaxeira',
+        state: 'Pernambuco',
+        city: 'Jaboatão',
+        cep: '52050-333',
+        description: 'Um buffet que cobra por prato quebrado',
+        payment_method: 'PIX',
+        buffet_owner: buffet_owner
+      )
+
+      event = Event.new(
+        name: 'Super Evento',
+        description: 'Super descrição',
+        min_quantity: 10,
+        max_quantity: 20,
+        duration: 60,
+        menu: 'Lagosta',
+        alcoholic_drink: true,
+        party_decoration: false,
+        valet_service: false,
+        local: 'Local do contratante',
+        buffet: buffet,
+        weekend_base_price: 120,
+        weekend_additional_price_person: 50,
+        weekday_base_price: 300,
+        weekday_additional_price_hour: 35
+      )
+
+      result = event.valid?
+
+      expect(result).to eq false
+    end
+
+    it 'falso quando weekday e weekend não estão preenchidos' do
+      buffet_owner = BuffetOwner.new(
+        name: 'Mateus Buffet Owner',
+        email: 'mateus@gmail.com',
+        password: '123456'
+      )
+
+      buffet = Buffet.new(
+        brand_name: 'ABC omidas',
+        corporate_name: 'Buffet ABC',
+        cnpj: '112233-4444',
+        phone: '(81) 987658866',
+        email: 'abc@buffet.com',
+        address: 'Avenida das comidas',
+        district: 'Macaxeira',
+        state: 'Pernambuco',
+        city: 'Jaboatão',
+        cep: '52050-333',
+        description: 'Um buffet que cobra por prato quebrado',
+        payment_method: 'PIX',
+        buffet_owner: buffet_owner
+      )
+
+      event = Event.new(
+        name: 'Super Evento',
+        description: 'Super descrição',
+        min_quantity: 10,
+        max_quantity: 20,
+        duration: 60,
+        menu: 'Lagosta',
+        alcoholic_drink: true,
+        party_decoration: false,
+        valet_service: false,
+        local: 'Local do contratante',
+        buffet: buffet
+      )
+
+      result = event.valid?
+
+      expect(result).to eq false
+    end
+
+    it 'true quando weekend e weekday estão preenchidos' do
+      buffet_owner = BuffetOwner.new(
+        name: 'Mateus Buffet Owner',
+        email: 'mateus@gmail.com',
+        password: '123456'
+      )
+
+      buffet = Buffet.new(
+        brand_name: 'ABC omidas',
+        corporate_name: 'Buffet ABC',
+        cnpj: '112233-4444',
+        phone: '(81) 987658866',
+        email: 'abc@buffet.com',
+        address: 'Avenida das comidas',
+        district: 'Macaxeira',
+        state: 'Pernambuco',
+        city: 'Jaboatão',
+        cep: '52050-333',
+        description: 'Um buffet que cobra por prato quebrado',
+        payment_method: 'PIX',
+        buffet_owner: buffet_owner
+      )
+
+      event = Event.new(
+        name: 'Super Evento',
+        description: 'Super descrição',
+        min_quantity: 10,
+        max_quantity: 20,
+        duration: 60,
+        menu: 'Lagosta',
+        alcoholic_drink: true,
+        party_decoration: false,
+        valet_service: false,
+        local: 'Local do contratante',
+        buffet: buffet,
+        weekend_base_price: 10,
+        weekend_additional_price_person: 20,
+        weekend_additional_price_hour: 30,
+        weekday_base_price: 40,
+        weekday_additional_price_person: 50,
+        weekday_additional_price_hour: 60,
+      )
+
+      result = event.valid?
+
+      expect(result).to eq true
+    end
+
+    it 'true quando weekend está preenchido e weekday não está preenchido' do
+      buffet_owner = BuffetOwner.new(
+        name: 'Mateus Buffet Owner',
+        email: 'mateus@gmail.com',
+        password: '123456'
+      )
+
+      buffet = Buffet.new(
+        brand_name: 'ABC omidas',
+        corporate_name: 'Buffet ABC',
+        cnpj: '112233-4444',
+        phone: '(81) 987658866',
+        email: 'abc@buffet.com',
+        address: 'Avenida das comidas',
+        district: 'Macaxeira',
+        state: 'Pernambuco',
+        city: 'Jaboatão',
+        cep: '52050-333',
+        description: 'Um buffet que cobra por prato quebrado',
+        payment_method: 'PIX',
+        buffet_owner: buffet_owner
+      )
+
+      event = Event.new(
+        name: 'Super Evento',
+        description: 'Super descrição',
+        min_quantity: 10,
+        max_quantity: 20,
+        duration: 60,
+        menu: 'Lagosta',
+        alcoholic_drink: true,
+        party_decoration: false,
+        valet_service: false,
+        local: 'Local do contratante',
+        buffet: buffet,
+        weekend_base_price: 10,
+        weekend_additional_price_person: 20,
+        weekend_additional_price_hour: 30
+      )
+
+      result = event.valid?
+
+      expect(result).to eq true
+    end
+
+    it 'true quando weekday está preenchido e weekend não está preenchido' do
+      buffet_owner = BuffetOwner.new(
+        name: 'Mateus Buffet Owner',
+        email: 'mateus@gmail.com',
+        password: '123456'
+      )
+
+      buffet = Buffet.new(
+        brand_name: 'ABC omidas',
+        corporate_name: 'Buffet ABC',
+        cnpj: '112233-4444',
+        phone: '(81) 987658866',
+        email: 'abc@buffet.com',
+        address: 'Avenida das comidas',
+        district: 'Macaxeira',
+        state: 'Pernambuco',
+        city: 'Jaboatão',
+        cep: '52050-333',
+        description: 'Um buffet que cobra por prato quebrado',
+        payment_method: 'PIX',
+        buffet_owner: buffet_owner
+      )
+
+      event = Event.new(
+        name: 'Super Evento',
+        description: 'Super descrição',
+        min_quantity: 10,
+        max_quantity: 20,
+        duration: 60,
+        menu: 'Lagosta',
+        alcoholic_drink: true,
+        party_decoration: false,
+        valet_service: false,
+        local: 'Local do contratante',
+        buffet: buffet,
+        weekday_base_price: 40,
+        weekday_additional_price_person: 50,
+        weekday_additional_price_hour: 60
+      )
+
+      result = event.valid?
+
+      expect(result).to eq true
+    end
+  end
 end

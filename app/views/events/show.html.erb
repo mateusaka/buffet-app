@@ -37,4 +37,16 @@
     </dd>
     <dt>Informações sobre o local do evento</dt>
     <dd><%= @event.local %></dd>
+    <% if @event.weekend_base_price %>
+        <dt>Final de semana</dt>
+        <dd>Preço base: $ <%= @event.weekend_base_price %></dd>
+        <dd>Preço adicional por pessoa: $ <%= @event.weekend_additional_price_person %></dd>
+        <dd>Preço adicional por hora: $ <%= @event.weekend_additional_price_hour %></dd>
+    <% end %>
+    <% if @event.weekday_base_price %>
+        <dt>Dia de semana</dt>
+        <dd>Preço base: $ <%= @event.weekday_base_price %></dd>
+        <dd>Preço adicional por pessoa: $ <%= @event.weekday_additional_price_person %></dd>
+        <dd>Preço adicional por hora: $ <%= @event.weekday_additional_price_hour %></dd>
+    <% end %>
 </dl>
