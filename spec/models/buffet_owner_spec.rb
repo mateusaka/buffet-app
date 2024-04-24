@@ -4,26 +4,24 @@ RSpec.describe BuffetOwner, type: :model do
   describe '#valid?' do
     it 'falso quando email está vazio' do
       buffet_owner = BuffetOwner.new(
-        name: 'Mateus Buffet Owner',
-        email: '',
-        password: '123456'
+        email: ''
       )
 
-      result = buffet_owner.valid?
+      buffet_owner.valid?
+      result = buffet_owner.errors.include? :email
 
-      expect(result).to eq false
+      expect(result).to eq true
     end
 
     it 'falso quando password está vazio' do
       buffet_owner = BuffetOwner.new(
-        name: 'Mateus Buffet Owner',
-        email: 'mateus@gmail.com',
         password: ''
       )
 
-      result = buffet_owner.valid?
+      buffet_owner.valid?
+      result = buffet_owner.errors.include? :password
 
-      expect(result).to eq false
+      expect(result).to eq true
     end
   end
 end

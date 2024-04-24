@@ -2,289 +2,86 @@ require 'rails_helper'
 
 RSpec.describe Event, type: :model do
   describe '#valid?' do
-    it 'falso quando name está vazio' do
-      buffet_owner = BuffetOwner.create!(
-        name: 'Mateus Buffet Owner',
-        email: 'mateus@gmail.com',
-        password: '123456'
-      )
-
-      buffet = Buffet.new(
-        brand_name: 'Buffet',
-        corporate_name: 'Corp name',
-        cnpj: '12345',
-        phone: '(81) 977777777',
-        email: 'email@email.com',
-        address: 'Address',
-        district: 'Dis',
-        state: 'State',
-        city: 'City',
-        cep: '52050-111',
-        description: 'Desc',
-        payment_method: 'PIX'
-      )
-      buffet.buffet_owner = buffet_owner
-      buffet.save
-
+    it 'true quando name está vazio' do
       event = Event.new(
-        name: '',
-        description: 'Event description',
-        min_quantity: 10,
-        max_quantity: 50,
-        duration: 60,
-        menu: 'Lagosta',
-        local: 'Local do contratante'
+        name: ''
       )
-      event.buffet = buffet
 
-      result = event.valid?
+      event.valid?
+      result = event.errors.include? :name
 
-      expect(result).to eq false
+      expect(result).to eq true
     end
 
-    it 'falso quando description está vazio' do
-      buffet_owner = BuffetOwner.create!(
-        name: 'Mateus Buffet Owner',
-        email: 'mateus@gmail.com',
-        password: '123456'
-      )
-
-      buffet = Buffet.new(
-        brand_name: 'Buffet',
-        corporate_name: 'Corp name',
-        cnpj: '12345',
-        phone: '(81) 977777777',
-        email: 'email@email.com',
-        address: 'Address',
-        district: 'Dis',
-        state: 'State',
-        city: 'City',
-        cep: '52050-111',
-        description: 'Desc',
-        payment_method: 'PIX'
-      )
-      buffet.buffet_owner = buffet_owner
-      buffet.save
-
+    it 'true quando description está vazio' do
       event = Event.new(
-        name: 'Event',
-        description: '',
-        min_quantity: 10,
-        max_quantity: 50,
-        duration: 60,
-        menu: 'Lagosta',
-        local: 'Local do contratante'
+        description: ''
       )
-      event.buffet = buffet
 
-      result = event.valid?
+      event.valid?
+      result = event.errors.include? :description
 
-      expect(result).to eq false
+      expect(result).to eq true
     end
 
-    it 'falso quando min_quantity está vazio' do
-      buffet_owner = BuffetOwner.create!(
-        name: 'Mateus Buffet Owner',
-        email: 'mateus@gmail.com',
-        password: '123456'
-      )
-
-      buffet = Buffet.new(
-        brand_name: 'Buffet',
-        corporate_name: 'Corp name',
-        cnpj: '12345',
-        phone: '(81) 977777777',
-        email: 'email@email.com',
-        address: 'Address',
-        district: 'Dis',
-        state: 'State',
-        city: 'City',
-        cep: '52050-111',
-        description: 'Desc',
-        payment_method: 'PIX'
-      )
-      buffet.buffet_owner = buffet_owner
-      buffet.save
-
+    it 'true quando min_quantity está vazio' do
       event = Event.new(
-        name: 'Event',
-        description: 'Event description',
-        min_quantity: '',
-        max_quantity: 50,
-        duration: 60,
-        menu: 'Lagosta',
-        local: 'Local do contratante'
+        min_quantity: ''
       )
-      event.buffet = buffet
 
-      result = event.valid?
+      event.valid?
+      result = event.errors.include? :min_quantity
 
-      expect(result).to eq false
+      expect(result).to eq true
     end
 
-    it 'falso quando max_quantity está vazio' do
-      buffet_owner = BuffetOwner.create!(
-        name: 'Mateus Buffet Owner',
-        email: 'mateus@gmail.com',
-        password: '123456'
-      )
-
-      buffet = Buffet.new(
-        brand_name: 'Buffet',
-        corporate_name: 'Corp name',
-        cnpj: '12345',
-        phone: '(81) 977777777',
-        email: 'email@email.com',
-        address: 'Address',
-        district: 'Dis',
-        state: 'State',
-        city: 'City',
-        cep: '52050-111',
-        description: 'Desc',
-        payment_method: 'PIX'
-      )
-      buffet.buffet_owner = buffet_owner
-      buffet.save
-
+    it 'true quando max_quantity está vazio' do
       event = Event.new(
-        name: 'Event',
-        description: 'Event description',
-        min_quantity: 10,
-        max_quantity: '',
-        duration: 60,
-        menu: 'Lagosta',
-        local: 'Local do contratante'
+        max_quantity: ''
       )
-      event.buffet = buffet
 
-      result = event.valid?
+      event.valid?
+      result = event.errors.include? :max_quantity
 
-      expect(result).to eq false
+      expect(result).to eq true
     end
 
-    it 'falso quando duration está vazio' do
-      buffet_owner = BuffetOwner.create!(
-        name: 'Mateus Buffet Owner',
-        email: 'mateus@gmail.com',
-        password: '123456'
-      )
-
-      buffet = Buffet.new(
-        brand_name: 'Buffet',
-        corporate_name: 'Corp name',
-        cnpj: '12345',
-        phone: '(81) 977777777',
-        email: 'email@email.com',
-        address: 'Address',
-        district: 'Dis',
-        state: 'State',
-        city: 'City',
-        cep: '52050-111',
-        description: 'Desc',
-        payment_method: 'PIX'
-      )
-      buffet.buffet_owner = buffet_owner
-      buffet.save
-
+    it 'true quando duration está vazio' do
       event = Event.new(
-        name: 'Event',
-        description: 'Event description',
-        min_quantity: 10,
-        max_quantity: 50,
-        duration: '',
-        menu: 'Lagosta',
-        local: 'Local do contratante'
+        duration: ''
       )
-      event.buffet = buffet
 
-      result = event.valid?
+      event.valid?
+      result = event.errors.include? :duration
 
-      expect(result).to eq false
+      expect(result).to eq true
     end
 
-    it 'falso quando menu está vazio' do
-      buffet_owner = BuffetOwner.create!(
-        name: 'Mateus Buffet Owner',
-        email: 'mateus@gmail.com',
-        password: '123456'
-      )
-
-      buffet = Buffet.new(
-        brand_name: 'Buffet',
-        corporate_name: 'Corp name',
-        cnpj: '12345',
-        phone: '(81) 977777777',
-        email: 'email@email.com',
-        address: 'Address',
-        district: 'Dis',
-        state: 'State',
-        city: 'City',
-        cep: '52050-111',
-        description: 'Desc',
-        payment_method: 'PIX'
-      )
-      buffet.buffet_owner = buffet_owner
-      buffet.save
-
+    it 'true quando menu está vazio' do
       event = Event.new(
-        name: 'Event',
-        description: 'Event description',
-        min_quantity: 10,
-        max_quantity: 50,
-        duration: 60,
-        menu: '',
-        local: 'Local do contratante'
+        menu: ''
       )
-      event.buffet = buffet
 
-      result = event.valid?
+      event.valid?
+      result = event.errors.include? :menu
 
-      expect(result).to eq false
+      expect(result).to eq true
     end
 
-    it 'falso quando local está vazio' do
-      buffet_owner = BuffetOwner.create!(
-        name: 'Mateus Buffet Owner',
-        email: 'mateus@gmail.com',
-        password: '123456'
-      )
-
-      buffet = Buffet.new(
-        brand_name: 'Buffet',
-        corporate_name: 'Corp name',
-        cnpj: '12345',
-        phone: '(81) 977777777',
-        email: 'email@email.com',
-        address: 'Address',
-        district: 'Dis',
-        state: 'State',
-        city: 'City',
-        cep: '52050-111',
-        description: 'Desc',
-        payment_method: 'PIX'
-      )
-      buffet.buffet_owner = buffet_owner
-      buffet.save
-
+    it 'true quando local está vazio' do
       event = Event.new(
-        name: 'Event',
-        description: 'Event description',
-        min_quantity: 10,
-        max_quantity: 50,
-        duration: 60,
-        menu: 'Lagosta',
         local: ''
       )
-      event.buffet = buffet
 
-      result = event.valid?
+      event.valid?
+      result = event.errors.include? :local
 
-      expect(result).to eq false
+      expect(result).to eq true
     end
   end
 
   describe '#check_weekend_and_weekday' do
-    it 'falso quando weekend está preenchido e weekday está incompleto' do
+    it 'false quando weekend está preenchido e weekday está incompleto' do
       buffet_owner = BuffetOwner.new(
         name: 'Mateus Buffet Owner',
         email: 'mateus@gmail.com',
@@ -330,7 +127,7 @@ RSpec.describe Event, type: :model do
       expect(result).to eq false
     end
 
-    it 'falso quando weekday está preenchido e weekend está incompleto' do
+    it 'false quando weekday está preenchido e weekend está incompleto' do
       buffet_owner = BuffetOwner.new(
         name: 'Mateus Buffet Owner',
         email: 'mateus@gmail.com',
@@ -377,7 +174,7 @@ RSpec.describe Event, type: :model do
       expect(result).to eq false
     end
 
-    it 'falso quando weekdend está incompleto e weekday está incompleto' do
+    it 'false quando weekdend está incompleto e weekday está incompleto' do
       buffet_owner = BuffetOwner.new(
         name: 'Mateus Buffet Owner',
         email: 'mateus@gmail.com',
@@ -423,7 +220,7 @@ RSpec.describe Event, type: :model do
       expect(result).to eq false
     end
 
-    it 'falso quando weekday e weekend não estão preenchidos' do
+    it 'false quando weekday e weekend não estão preenchidos' do
       buffet_owner = BuffetOwner.new(
         name: 'Mateus Buffet Owner',
         email: 'mateus@gmail.com',
