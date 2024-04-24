@@ -19,6 +19,8 @@ pt-BR:
         description: Descrição
         payment_method: Método de pagamento
       event:
+        min_quantity_validate: Quantidade mínima
+        max_quantity_validate: Quantidade máxima
         weekend_and_or_weekday_validate: Final de semana e/ou dia de semana
         name: Nome
         description: Descrição

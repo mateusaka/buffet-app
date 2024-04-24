@@ -400,4 +400,40 @@ RSpec.describe Event, type: :model do
       expect(result).to eq true
     end
   end
+
+  describe '#check_min_max_quantity' do
+    it 'true quando quantidade máxima é menor que mínima' do
+      event = Event.new(
+        min_quantity: 5,
+        max_quantity: 2
+      )
+
+      event.valid?
+      result = event.errors.include? :max_quantity_validate
+
+      expect(result).to eq true
+    end
+
+    it 'true quando quantidade mínima é inferior a 1' do
+      event = Event.new(
+        min_quantity: 0
+      )
+
+      event.valid?
+      result = event.errors.include? :min_quantity_validate
+
+      expect(result).to eq true
+    end
+
+    it 'true quando quantidade mínima é inferior a 1' do
+      event = Event.new(
+        min_quantity: -1
+      )
+
+      event.valid?
+      result = event.errors.include? :min_quantity_validate
+
+      expect(result).to eq true
+    end
+  end
 end
