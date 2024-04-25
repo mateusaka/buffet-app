@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get '/unauthorized', to: 'errors#unauthorized'
 
-  resources :buffets, only: [:new, :create, :show, :edit, :update]
+  resources :buffets, only: [:index, :new, :create, :show, :edit, :update]
+  get '/buffets/:id/guest', to: 'buffets#show_to_guest', as: 'show_to_guest'
+
   resources :events, only: [:index, :new, :create, :show]
 end

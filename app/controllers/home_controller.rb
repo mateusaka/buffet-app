@@ -6,6 +6,8 @@ class HomeController < ApplicationController
       else
         @buffet = current_buffet_owner.buffet
       end
+    else
+      @buffets = Buffet.all
     end
   end
 end

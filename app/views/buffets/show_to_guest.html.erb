@@ -1,0 +1,18 @@
+<h1>Informações do Buffet</h1>
+
+<dl>
+    <dt>Nome fantasia</dt>
+    <dd><%= @buffet.brand_name %></dd>
+    <dt>CNPJ</dt>
+    <dd><%= @buffet.cnpj %></dd>
+    <dt>Telefone</dt>
+    <dd><%= @buffet.phone %></dd>
+    <dt>Email</dt>
+    <dd><%= @buffet.email %></dd>
+    <dt>Endereço completo</dt>
+    <dd><%= @buffet.address %> | <%= @buffet.district %> - <%= @buffet.city %> - <%= @buffet.state %> | <%= @buffet.cep %></dd>
+    <dt>Descrição</dt>
+    <dd><%= @buffet.description %></dd>
+    <dt>Método de pagamento</dt>
+    <dd><%= @buffet.payment_method %></dd>
+</dl>

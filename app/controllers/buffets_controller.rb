@@ -1,5 +1,5 @@
 class BuffetsController < ApplicationController
-  before_action :authenticate_buffet_owner!
+  before_action :authenticate_buffet_owner!, except: [:show_to_guest]
 
   def new
     if current_buffet_owner.buffet
@@ -46,6 +46,13 @@ class BuffetsController < ApplicationController
     end
 
     @buffet = check_buffet
+  end
+
+  def show_to_guest
+    @buffet = Buffet.find(params[:id])
+    @buffet.attributes.except('corporate_name')
+
+    render 'show_to_guest'
   end
 
   def edit

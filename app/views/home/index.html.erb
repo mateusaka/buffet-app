@@ -1,1 +1,14 @@
 <h1>Cade Buffet?</h1>
+
+<% if !buffet_owner_signed_in? %>
+    <% if @buffets.empty? %>
+        <p>Não há buffets disponíveis</p>
+    <% else %>
+        <% @buffets.each do |buffet| %>
+            <div>
+                <%= link_to buffet.brand_name, show_to_guest_path(buffet) %> | <%= buffet.city %> - <%= buffet.state %>
+            </div>
+            <hr>
+        <% end %>
+    <% end %>
+<% end %>
