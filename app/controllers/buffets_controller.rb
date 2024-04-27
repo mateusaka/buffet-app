@@ -1,5 +1,5 @@
 class BuffetsController < ApplicationController
-  before_action :authenticate_buffet_owner!, except: [:show_to_guest]
+  before_action :authenticate_buffet_owner!, except: [:show_to_guest, :search]
 
   def new
     if current_buffet_owner.buffet
@@ -94,4 +94,14 @@ class BuffetsController < ApplicationController
       render 'new'
     end
   end
+
+    def search
+      @query = params[:query]
+
+      @buffets = Buffet
+      .left_joins(:events)
+      .where('buffets.brand_name LIKE ? OR events.name LIKE ? OR buffets.city LIKE ?', "%#{@query}%", "%#{@query}%", "%#{@query}%")
+      .distinct
+      .order(:brand_name)
+    end
 end

@@ -1,0 +1,12 @@
+<h1>Resultados da busca por: <%= @query %></h1>
+
+<% if @buffets.present? %>
+    <% @buffets.each do |buffet| %>
+        <div>
+            <%= link_to buffet.brand_name, show_to_guest_buffet_path(buffet) %> | <%= buffet.city %> - <%= buffet.state %>
+        </div>
+        <hr>
+    <% end %>
+<% else %>
+    <p>Não foram encontrados resultados</p>
+<% end %>

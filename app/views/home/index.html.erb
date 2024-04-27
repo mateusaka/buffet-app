@@ -6,7 +6,7 @@
     <% else %>
         <% @buffets.each do |buffet| %>
             <div>
-                <%= link_to buffet.brand_name, show_to_guest_path(buffet) %> | <%= buffet.city %> - <%= buffet.state %>
+                <%= link_to buffet.brand_name, show_to_guest_buffet_path(buffet) %> | <%= buffet.city %> - <%= buffet.state %>
             </div>
             <hr>
         <% end %>
