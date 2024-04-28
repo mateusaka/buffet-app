@@ -52,6 +52,9 @@ class BuffetsController < ApplicationController
     @buffet = Buffet.find(params[:id])
     @buffet.attributes.except('corporate_name')
 
+    @events = Event
+    .where('events.buffet_id = ?', @buffet.id)
+
     render 'show_to_guest'
   end
 

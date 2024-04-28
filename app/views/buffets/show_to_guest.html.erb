@@ -16,3 +16,61 @@
     <dt>Método de pagamento</dt>
     <dd><%= @buffet.payment_method %></dd>
 </dl>
+
+<hr>
+
+<h2>Tipos de festas disponíveis</h2>
+
+<% if @events.present? %>
+    <% @events.each do |event| %>
+        <dt><%= event.name %></dt>
+        <dd><%= event.description %></dd>
+        <dt>Quantidade de pessoas</dt>
+        <dd><%= event.min_quantity %> - <%= event.max_quantity %></dd>
+        <dt>Duração</dt>
+        <dd><%= event.duration %> minutos</dd>
+        <dt>Cardápio</dt>
+        <dd><%= event.menu %></dd>
+        <dt>Bebida Alcoólica</dt>
+        <dd>
+            <% if event.alcoholic_drink %>
+                &#9989; Sim
+            <% else %>
+                &#10060; Não
+            <% end %>
+        </dd>
+        <dt>Decoração</dt>
+        <dd>
+            <% if event.party_decoration %>
+                &#9989; Sim
+            <% else %>
+                &#10060; Não
+            <% end %>
+        </dd>
+        <dt>Serviço de valete</dt>
+        <dd>
+            <% if event.valet_service %>
+                &#9989; Sim
+            <% else %>
+                &#10060; Não
+            <% end %>
+        </dd>
+        <dt>Informações sobre o local do evento</dt>
+        <dd><%= event.local %></dd>
+        <% if event.weekend_base_price %>
+            <dt>Final de semana</dt>
+            <dd>Preço base: $ <%= event.weekend_base_price %></dd>
+            <dd>Preço adicional por pessoa: $ <%= event.weekend_additional_price_person %></dd>
+            <dd>Preço adicional por hora: $ <%= event.weekend_additional_price_hour %></dd>
+        <% end %>
+        <% if event.weekday_base_price %>
+            <dt>Dia de semana</dt>
+            <dd>Preço base: $ <%= event.weekday_base_price %></dd>
+            <dd>Preço adicional por pessoa: $ <%= event.weekday_additional_price_person %></dd>
+            <dd>Preço adicional por hora: $ <%= event.weekday_additional_price_hour %></dd>
+        <% end %>
+        <hr>
+    <% end %>
+<% else %>
+    <p>Não há informações disponíveis, entre em contato pelo email ou telefone para mais informações</p>
+<% end %>
