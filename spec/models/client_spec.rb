@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Client, type: :model do
   describe '#valid?' do
-    it 'falso quando cpf está vazio' do
+    it 'true quando cpf está vazio' do
       client = Client.new(
         cpf: ''
       )
@@ -13,7 +13,25 @@ RSpec.describe Client, type: :model do
       expect(result).to eq true
     end
 
-    it 'falso quando email está vazio' do
+    it 'true quando cpf já está em uso' do
+      first_client = Client.create!(
+        name: 'Mateus Cliente',
+        cpf: '10365025038',
+        email: 'mateus@cliente.com',
+        password: '123456'
+      )
+
+      client = Client.new(
+        cpf: '10365025038'
+      )
+
+      client.valid?
+      result = client.errors.include? :cpf
+
+      expect(result).to eq true
+    end
+
+    it 'true quando email está vazio' do
       client = Client.new(
         email: ''
       )
@@ -24,7 +42,7 @@ RSpec.describe Client, type: :model do
       expect(result).to eq true
     end
 
-    it 'falso quando password está vazio' do
+    it 'true quando password está vazio' do
       client = Client.new(
         password: ''
       )
