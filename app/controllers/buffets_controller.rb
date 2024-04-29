@@ -102,7 +102,7 @@ class BuffetsController < ApplicationController
       @query = params[:query]
 
       @buffets = Buffet
-      .left_joins(:events)
+      .joins(:events)
       .where('buffets.brand_name LIKE ? OR events.name LIKE ? OR buffets.city LIKE ?', "%#{@query}%", "%#{@query}%", "%#{@query}%")
       .distinct
       .order(:brand_name)
