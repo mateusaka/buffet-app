@@ -4,7 +4,14 @@ pt-BR:
       buffet: Buffet
       buffet_owner: Dono de Buffet
       event: Evento
+      client: Cliente
     attributes:
+      buffet_owner:
+        name: Nome
+      client:
+        cpf_validate: CPF
+        name: Nome
+        cpf: CPF
       buffet:
         brand_name: Nome fantasia
         corporate_name: Razão social

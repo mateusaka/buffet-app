@@ -2,8 +2,11 @@
     <li><%= link_to 'Home', root_path %></li>
     <% if buffet_owner_signed_in? %>
         <li><%= current_buffet_owner.email %><%= button_to 'Sair', destroy_buffet_owner_session_path, method: :delete, class: 'button-to' %></li>
+    <% elsif client_signed_in? %>
+        <li><%= current_client.email %><%= button_to 'Sair', destroy_client_session_path, method: :delete, class: 'button-to' %></li>
     <% else %>
         <li><%= link_to 'Entrar(dono de buffet)', new_buffet_owner_session_path %></li>
+        <li><%= link_to 'Entrar(cliente)', new_client_session_path %></li>
     <% end %>
     <li>
         <hr>

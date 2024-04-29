@@ -29,7 +29,7 @@ describe 'Dono de buffet entra' do
 
     expect(page).not_to have_content 'Sair'
     expect(page).not_to have_content 'mateus@gmail.com'
-    expect(page).to have_content 'Entrar'
+    expect(page).to have_content 'Entrar(dono de buffet)'
   end
 
   it 'e caso não tenha buffet cadastrado redireciona para a pagina de cadastro' do
