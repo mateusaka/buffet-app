@@ -75,6 +75,57 @@ describe 'Visitante busca por um buffet' do
       buffet_owner: third_buffet_owner
     )
 
+    first_event = Event.create!(
+      name: 'Super Evento',
+      description: 'Super descrição',
+      min_quantity: 20,
+      max_quantity: 50,
+      duration: 60,
+      menu: 'Lagosta',
+      alcoholic_drink: true,
+      party_decoration: false,
+      valet_service: true,
+      local: 'Local do contratante',
+      buffet: buffet,
+      weekend_base_price: 120,
+      weekend_additional_price_person: 50,
+      weekend_additional_price_hour: 30
+    )
+
+    second_event = Event.create!(
+      name: 'Aniversário',
+      description: 'Faça sua festa de aniversário com nosso buffet',
+      min_quantity: 100,
+      max_quantity: 500,
+      duration: 60,
+      menu: 'Caviar',
+      alcoholic_drink: false,
+      party_decoration: false,
+      valet_service: false,
+      local: 'Local do buffet',
+      buffet: second_buffet,
+      weekend_base_price: 220,
+      weekend_additional_price_person: 20,
+      weekend_additional_price_hour: 60
+    )
+
+    third_event = Event.create!(
+      name: 'Casamento',
+      description: 'Uma descrição para eventos de casamento',
+      min_quantity: 75,
+      max_quantity: 370,
+      duration: 60,
+      menu: 'Peixe',
+      alcoholic_drink: true,
+      party_decoration: true,
+      valet_service: true,
+      local: 'Local do buffet',
+      buffet: third_buffet,
+      weekday_base_price: 520,
+      weekday_additional_price_person: 70,
+      weekday_additional_price_hour: 10
+    )
+
     visit root_path
 
     fill_in 'Buscar buffet', with: 'ABC omidas'
@@ -151,6 +202,57 @@ describe 'Visitante busca por um buffet' do
       description: 'Um buffet que cobra por prato quebrado',
       payment_method: 'PIX',
       buffet_owner: third_buffet_owner
+    )
+
+    first_event = Event.create!(
+      name: 'Super Evento',
+      description: 'Super descrição',
+      min_quantity: 20,
+      max_quantity: 50,
+      duration: 60,
+      menu: 'Lagosta',
+      alcoholic_drink: true,
+      party_decoration: false,
+      valet_service: true,
+      local: 'Local do contratante',
+      buffet: buffet,
+      weekend_base_price: 120,
+      weekend_additional_price_person: 50,
+      weekend_additional_price_hour: 30
+    )
+
+    second_event = Event.create!(
+      name: 'Aniversário',
+      description: 'Faça sua festa de aniversário com nosso buffet',
+      min_quantity: 100,
+      max_quantity: 500,
+      duration: 60,
+      menu: 'Caviar',
+      alcoholic_drink: false,
+      party_decoration: false,
+      valet_service: false,
+      local: 'Local do buffet',
+      buffet: second_buffet,
+      weekend_base_price: 220,
+      weekend_additional_price_person: 20,
+      weekend_additional_price_hour: 60
+    )
+
+    third_event = Event.create!(
+      name: 'Casamento',
+      description: 'Uma descrição para eventos de casamento',
+      min_quantity: 75,
+      max_quantity: 370,
+      duration: 60,
+      menu: 'Peixe',
+      alcoholic_drink: true,
+      party_decoration: true,
+      valet_service: true,
+      local: 'Local do buffet',
+      buffet: third_buffet,
+      weekday_base_price: 520,
+      weekday_additional_price_person: 70,
+      weekday_additional_price_hour: 10
     )
 
     visit root_path
@@ -326,6 +428,57 @@ describe 'Visitante busca por um buffet' do
       buffet_owner: third_buffet_owner
     )
 
+    first_event = Event.create!(
+      name: 'Super Evento',
+      description: 'Super descrição',
+      min_quantity: 20,
+      max_quantity: 50,
+      duration: 60,
+      menu: 'Lagosta',
+      alcoholic_drink: true,
+      party_decoration: false,
+      valet_service: true,
+      local: 'Local do contratante',
+      buffet: buffet,
+      weekend_base_price: 120,
+      weekend_additional_price_person: 50,
+      weekend_additional_price_hour: 30
+    )
+
+    second_event = Event.create!(
+      name: 'Aniversário',
+      description: 'Faça sua festa de aniversário com nosso buffet',
+      min_quantity: 100,
+      max_quantity: 500,
+      duration: 60,
+      menu: 'Caviar',
+      alcoholic_drink: false,
+      party_decoration: false,
+      valet_service: false,
+      local: 'Local do buffet',
+      buffet: second_buffet,
+      weekend_base_price: 220,
+      weekend_additional_price_person: 20,
+      weekend_additional_price_hour: 60
+    )
+
+    third_event = Event.create!(
+      name: 'Casamento',
+      description: 'Uma descrição para eventos de casamento',
+      min_quantity: 75,
+      max_quantity: 370,
+      duration: 60,
+      menu: 'Peixe',
+      alcoholic_drink: true,
+      party_decoration: true,
+      valet_service: true,
+      local: 'Local do buffet',
+      buffet: third_buffet,
+      weekday_base_price: 520,
+      weekday_additional_price_person: 70,
+      weekday_additional_price_hour: 10
+    )
+
     visit root_path
 
     fill_in 'Buscar buffet', with: 'ABC'
@@ -337,7 +490,7 @@ describe 'Visitante busca por um buffet' do
     expect(page).to have_content 'ABC food | Natal - Rio Grande do Norte'
   end
 
-  it 'seleciona e o buffet não possui eventos' do
+  it 'mas o buffet não possui eventos' do
     buffet_owner = BuffetOwner.create!(
       name: 'Mateus Buffet Owner',
       email: 'mateus@gmail.com',
@@ -408,9 +561,8 @@ describe 'Visitante busca por um buffet' do
 
     fill_in 'Buscar buffet', with: 'Natal'
     click_on 'Buscar'
-    click_on 'Second'
 
-    expect(page).to have_content 'Não há informações disponíveis, entre em contato pelo email ou telefone para mais informações'
+    expect(page).to have_content 'Não foram encontrados resultados'
   end
 
   it 'seleciona o buffet e vê todas as informações do buffet, inclusive os eventos' do
