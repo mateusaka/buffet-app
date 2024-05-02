@@ -121,7 +121,7 @@ describe 'Cliente faz um novo pedido' do
 
     expect(page).to have_content 'Pedido realizado com sucesso'
     expect(page).to have_content 'Pedidos'
-    expect(page).to have_content '12ER5AAB'
+    expect(page).to have_content "12ER5AAB - #{I18n.localize(1.day.from_now.to_date)}"
   end
 
   it 'com dados incompletos' do

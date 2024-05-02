@@ -70,7 +70,7 @@ describe 'Cliente vê os seus pedidos' do
     visit root_path
     click_on 'Meus pedidos'
 
-    expect(page).to have_content "#{order.code}"
-    expect(page).to have_content "#{second_order.code}"
+    expect(page).to have_content "#{order.code} - #{I18n.localize(order.date)}"
+    expect(page).to have_content "#{second_order.code} - #{I18n.localize(second_order.date)}"
   end
 end
