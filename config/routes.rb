@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   get '/unauthorized', to: 'errors#unauthorized'
 
+  resources :events, only: [:index, :new, :create, :show]
+  resources :orders, only: [:index, :show]
   resources :buffets, only: [:index, :new, :create, :show, :edit, :update] do
+    resources :orders, only: [:new, :create]
+
     member do
       get 'show_to_guest'
     end
@@ -14,6 +18,4 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
-
-  resources :events, only: [:index, :new, :create, :show]
 end

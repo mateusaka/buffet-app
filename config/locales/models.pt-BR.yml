@@ -1,11 +1,21 @@
 pt-BR:
   activerecord:
     models:
+      order: Pedido
       buffet: Buffet
       buffet_owner: Dono de Buffet
       event: Evento
       client: Cliente
     attributes:
+      order:
+        quantity_validate: Quantidade de pessoas
+        date_validate: Data
+        event_id: Evento
+        date: Data
+        quantity: Quantidade de pessoas
+        details: Detalhes
+        code: Código
+        status: Status
       buffet_owner:
         name: Nome
       client:

@@ -1,0 +1,32 @@
+<h1>Novo pedido</h1>
+
+<% if(@order.errors.any?) %>
+    <p>Erros:</p>
+    <ul>
+        <% @order.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<%= form_with(model: @order, url: buffet_orders_path, method: 'post') do |form| %>
+    <div>
+        <%= form.label :event_id %> <br>
+        <%= form.collection_select :event_id, @events, :id, :name %>
+    </div>
+    <div>
+        <%= form.label :date %> <br>
+        <%= form.date_field :date %>
+    </div>
+    <div>
+        <%= form.label :quantity %> <br>
+        <%= form.number_field :quantity %>
+    </div>
+    <div>
+        <%= form.label :details %> <br>
+        <%= form.text_area :details %>
+    </div>
+    <div class="my-2">
+        <%= form.submit %>
+    </div>
+<% end %>

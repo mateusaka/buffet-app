@@ -1,27 +1,31 @@
 <h1>Informações do Buffet</h1>
 
-<dl>
-    <dt>Nome fantasia</dt>
-    <dd><%= @buffet.brand_name %></dd>
-    <dt>CNPJ</dt>
-    <dd><%= @buffet.cnpj %></dd>
-    <dt>Telefone</dt>
-    <dd><%= @buffet.phone %></dd>
-    <dt>Email</dt>
-    <dd><%= @buffet.email %></dd>
-    <dt>Endereço completo</dt>
-    <dd><%= @buffet.address %> | <%= @buffet.district %> - <%= @buffet.city %> - <%= @buffet.state %> | <%= @buffet.cep %></dd>
-    <dt>Descrição</dt>
-    <dd><%= @buffet.description %></dd>
-    <dt>Método de pagamento</dt>
-    <dd><%= @buffet.payment_method %></dd>
-</dl>
-
-<hr>
-
-<h2>Tipos de festas disponíveis</h2>
-
 <% if @events.present? %>
+    <dl>
+        <dt>Nome fantasia</dt>
+        <dd><%= @buffet.brand_name %></dd>
+        <dt>CNPJ</dt>
+        <dd><%= @buffet.cnpj %></dd>
+        <dt>Telefone</dt>
+        <dd><%= @buffet.phone %></dd>
+        <dt>Email</dt>
+        <dd><%= @buffet.email %></dd>
+        <dt>Endereço completo</dt>
+        <dd><%= @buffet.address %> | <%= @buffet.district %> - <%= @buffet.city %> - <%= @buffet.state %> | <%= @buffet.cep %></dd>
+        <dt>Descrição</dt>
+        <dd><%= @buffet.description %></dd>
+        <dt>Método de pagamento</dt>
+        <dd><%= @buffet.payment_method %></dd>
+
+        <% if client_signed_in? %>
+            <%= link_to 'Reserve', new_buffet_order_path(@buffet) %>
+        <% end %>
+    </dl>
+
+    <hr>
+
+    <h2>Tipos de festas disponíveis</h2>
+
     <% @events.each do |event| %>
         <dt><%= event.name %></dt>
         <dd><%= event.description %></dd>
@@ -72,5 +76,5 @@
         <hr>
     <% end %>
 <% else %>
-    <p>Não há informações disponíveis, entre em contato pelo email ou telefone para mais informações</p>
+    <p>Esse buffet ainda não possui eventos disponíveis, volte mais tarde!</p>
 <% end %>
