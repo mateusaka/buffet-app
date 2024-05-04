@@ -18,6 +18,7 @@
                 <li><%= link_to 'Novo evento', new_event_path %></li>
                 <% if current_buffet_owner.buffet.events.any? %>
                     <li><%= link_to 'Meus eventos', events_path %></li>
+                    <li><%= link_to 'Pedidos', show_to_buffet_owner_orders_path %></li>
                 <% end %>
             <% end %>
         <% end %>        

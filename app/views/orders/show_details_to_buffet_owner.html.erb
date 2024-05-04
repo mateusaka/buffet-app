@@ -17,4 +17,8 @@
     <% else %>
         <dd><span class="text-danger"><%= @order.status %></span></dd>
     <% end %>
+
+    <%= link_to 'Aprovar' %>
+    <span class="mx-2">|</span>
+    <%= link_to 'Recusar' %>   
 </dl>

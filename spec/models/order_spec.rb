@@ -287,7 +287,8 @@ RSpec.describe Order, type: :model do
         buffet: buffet,
         event: event,
         date: 1.day.from_now,
-        quantity: 5
+        quantity: 5,
+        details: 'Alguns pequenos detalhes'
       )
 
       order.valid?
@@ -347,7 +348,8 @@ RSpec.describe Order, type: :model do
         buffet: buffet,
         event: event,
         date: 1.day.from_now,
-        quantity: 25
+        quantity: 25,
+        details: 'Alguns pequenos detalhes'
       )
 
       order.valid?
@@ -408,8 +410,9 @@ RSpec.describe Order, type: :model do
         client: client,
         buffet: buffet,
         event: event,
-        date: 1.day.ago,
-        quantity: 12
+        date: 2.days.ago,
+        quantity: 12,
+        details: 'Alguns pequenos detalhes'
       )
 
       order.valid?

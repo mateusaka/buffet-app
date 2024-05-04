@@ -10,6 +10,8 @@ class Order < ApplicationRecord
 
   before_validation :generate_code, :generate_status
 
+  attr_accessor :equal_date
+
   def generate_code
     self.code = SecureRandom.alphanumeric(8).upcase
   end

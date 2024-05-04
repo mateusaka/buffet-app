@@ -66,7 +66,7 @@ describe 'Cliente vê detalhes de um pedido' do
       details: 'Mais detalhes do segundo pedido'
     )
 
-    login_as(client)
+    login_as(client, scope: :client)
     visit root_path
     click_on 'Meus pedidos'
     click_on "#{order.code}"
@@ -151,7 +151,7 @@ describe 'Cliente vê detalhes de um pedido' do
       details: 'Mais detalhes do segundo pedido'
     )
 
-    login_as(client)
+    login_as(client, scope: :client)
     visit root_path
     visit order_path(second_order)
 

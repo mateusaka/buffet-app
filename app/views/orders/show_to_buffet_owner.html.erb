@@ -1,0 +1,43 @@
+<h1>Pedidos para o seu buffet</h1>
+
+<% if @orders.present? %>
+    <% @orders.each do |order| %>
+        <% if order.status == 'Aguardando avaliação do buffet' %>
+            <%= link_to order.code, show_details_to_buffet_owner_order_path(order) %> - <%= l(order.date) %> |
+            <span class="text-warning"><%= order.status %></span>
+
+            <% if order.equal_date %>
+                &#10071; Atenção, existem pedidos com a mesma data
+            <% end %>
+
+            <span class="mx-2">|</span>
+            <%= link_to 'Aprovar' %>
+            <span class="mx-2">|</span>
+            <%= link_to 'Recusar' %> 
+            <hr>
+        <% end %>        
+    <% end %>
+
+    <% @orders.each do |order| %>
+        <% if order.status != 'Aguardando avaliação do buffet' %>
+            <%= link_to order.code, show_details_to_buffet_owner_order_path(order) %> - <%= l(order.date) %> |
+            <% if order.status == 'Pedido confirmado' %>
+                <span class="text-success"><%= order.status %></span>
+            <% else %>
+                <span class="text-danger"><%= order.status %></span>
+            <% end %>
+
+            <% if order.equal_date %>
+                &#10071; Atenção, existem pedidos com a mesma data
+            <% end %>
+
+            <span class="mx-2">|</span>
+            <%= link_to 'Aprovar' %>
+            <span class="mx-2">|</span>
+            <%= link_to 'Recusar' %> 
+            <hr>
+        <% end %>
+    <% end %>    
+<% else %>
+    <p>Você ainda não tem pedidos</p>
+<% end %>
