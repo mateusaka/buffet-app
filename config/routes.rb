@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :show] do
     member do
       get 'show_details_to_buffet_owner'
+      get 'confirm'
+      put 'confirm_update'
     end
 
     collection do

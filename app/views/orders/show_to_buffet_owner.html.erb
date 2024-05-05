@@ -11,7 +11,7 @@
             <% end %>
 
             <span class="mx-2">|</span>
-            <%= link_to 'Aprovar' %>
+            <%= link_to 'Aprovar', confirm_order_path(order) %>
             <span class="mx-2">|</span>
             <%= link_to 'Recusar' %> 
             <hr>
@@ -30,12 +30,6 @@
             <% if order.equal_date %>
                 &#10071; Atenção, existem pedidos com a mesma data
             <% end %>
-
-            <span class="mx-2">|</span>
-            <%= link_to 'Aprovar' %>
-            <span class="mx-2">|</span>
-            <%= link_to 'Recusar' %> 
-            <hr>
         <% end %>
     <% end %>    
 <% else %>

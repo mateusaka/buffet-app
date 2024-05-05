@@ -8,6 +8,11 @@ pt-BR:
       client: Cliente
     attributes:
       order:
+        extra_fee: Taxa extra
+        discount: Desconto
+        fee_or_discount_reason: Motivo da taxa extra ou desconto
+        payment_method: Forma de pagamento
+        fee_or_discount_validate: Taxa extra ou desconto
         quantity_validate: Quantidade de pessoas
         date_validate: Data
         event_id: Evento

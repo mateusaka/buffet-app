@@ -5,10 +5,12 @@ class Order < ApplicationRecord
 
   validates :event, :date, :quantity, :details,
             :code, :status, presence: true
+  validates :payment_method, :fee_or_discount_reason, presence:true, on: :update
 
   validate :check_quantity, :check_date
+  validate :check_fee_or_discount, on: :update
 
-  before_validation :generate_code, :generate_status
+  before_validation :generate_code, :generate_status, on: :create
 
   attr_accessor :equal_date
 
@@ -18,6 +20,12 @@ class Order < ApplicationRecord
 
   def generate_status
     self.status = 'Aguardando avaliação do buffet'
+  end
+
+  def check_fee_or_discount
+    if extra_fee.present? == discount.present?
+      errors.add(:fee_or_discount_validate, 'deve ser preenchido')
+    end
   end
 
   def check_quantity

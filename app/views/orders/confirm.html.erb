@@ -1,0 +1,45 @@
+<h1>Confirmação do pedido <%= @order.code %></h1>
+
+<% if(@order.errors.any?) %>
+    <p>Erros:</p>
+    <ul>
+        <% @order.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+<% end %>
+
+<dl>
+    <dt>Valor</dt>
+    <dd>
+        <% if @event.weekend_base_price.present? %>
+            $ <%= @event.weekend_base_price %>
+        <% else %>
+            $ <%= @event.weekday_base_price %>
+        <% end %>
+    </dd>
+    <dt>Meios de pagamento do seu buffet</dt>
+    <dd><%= @buffet.payment_method %></dd>
+</dl>
+
+<%= form_with(model: @order, url: confirm_update_order_path, method: 'put') do |form| %>
+    <div>
+        <%= form.label :payment_method %> <br>
+        <%= form.text_field :payment_method %>
+    </div>
+    <div>
+        <%= form.label :discount %> <br>
+        <%= form.number_field :discount %>
+    </div>
+    <div>
+        <%= form.label :extra_fee %> <br>
+        <%= form.number_field :extra_fee %>
+    </div>
+    <div>
+        <%= form.label :fee_or_discount_reason %> <br>
+        <%= form.text_area :fee_or_discount_reason %>
+    </div>
+    <div class="my-2">
+        <%= form.submit 'Confirmar Pedido' %>
+    </div>
+<% end %>

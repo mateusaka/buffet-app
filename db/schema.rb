@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_30_030022) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_04_225405) do
   create_table "buffet_owners", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -91,6 +91,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_30_030022) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "payment_method"
+    t.decimal "extra_fee", precision: 10, scale: 2
+    t.decimal "discount", precision: 10, scale: 2
+    t.text "fee_or_discount_reason"
     t.index ["buffet_id"], name: "index_orders_on_buffet_id"
     t.index ["client_id"], name: "index_orders_on_client_id"
     t.index ["event_id"], name: "index_orders_on_event_id"

@@ -93,8 +93,6 @@ RSpec.describe Order, type: :model do
         details: 'Mais detalhes do pedido'
       )
 
-      order.save!
-
       expect(order.code).not_to be_empty
       expect(order.code.length).to eq 8
     end
@@ -226,8 +224,6 @@ RSpec.describe Order, type: :model do
         quantity: 20,
         details: 'Mais detalhes do pedido'
       )
-
-      order.save!
 
       expect(order.status).not_to be_empty
       expect(order.status).to eq 'Aguardando avaliação do buffet'
