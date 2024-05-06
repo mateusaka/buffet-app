@@ -8,6 +8,8 @@ pt-BR:
       client: Cliente
     attributes:
       order:
+        payment_validity_validate: Validade do pagamento
+        payment_validity: Validade do pagamento
         extra_fee: Taxa extra
         discount: Desconto
         fee_or_discount_reason: Motivo da taxa extra ou desconto

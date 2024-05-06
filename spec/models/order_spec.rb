@@ -88,7 +88,7 @@ RSpec.describe Order, type: :model do
         client: client,
         buffet: buffet,
         event: event,
-        date: 1.day.from_now,
+        date: weekend_date,
         quantity: 20,
         details: 'Mais detalhes do pedido'
       )
@@ -148,7 +148,7 @@ RSpec.describe Order, type: :model do
         client: client,
         buffet: buffet,
         event: event,
-        date: 1.day.from_now,
+        date: weekend_date,
         quantity: 20,
         details: 'Mais detalhes do pedido'
       )
@@ -157,7 +157,7 @@ RSpec.describe Order, type: :model do
         client: client,
         buffet: buffet,
         event: event,
-        date: 1.day.from_now,
+        date: weekend_date,
         quantity: 20,
         details: 'Mais detalhes do pedido'
       )
@@ -220,7 +220,7 @@ RSpec.describe Order, type: :model do
         client: client,
         buffet: buffet,
         event: event,
-        date: 1.day.from_now,
+        date: weekend_date,
         quantity: 20,
         details: 'Mais detalhes do pedido'
       )
@@ -282,7 +282,7 @@ RSpec.describe Order, type: :model do
         client: client,
         buffet: buffet,
         event: event,
-        date: 1.day.from_now,
+        date: weekend_date,
         quantity: 5,
         details: 'Alguns pequenos detalhes'
       )
@@ -343,7 +343,7 @@ RSpec.describe Order, type: :model do
         client: client,
         buffet: buffet,
         event: event,
-        date: 1.day.from_now,
+        date: weekend_date,
         quantity: 25,
         details: 'Alguns pequenos detalhes'
       )

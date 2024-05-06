@@ -52,7 +52,7 @@ describe 'Dono de buffe seleciona um pedido' do
       client: client,
       buffet: buffet,
       event: event,
-      date: 1.day.from_now,
+      date: weekend_date,
       quantity: 12,
       details: 'Mais detalhes do pedido'
     )

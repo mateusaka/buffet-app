@@ -52,7 +52,7 @@ describe 'Dono de buffet vê pedidos' do
       client: client,
       buffet: buffet,
       event: event,
-      date: 1.day.from_now,
+      date: weekend_date,
       quantity: 12,
       details: 'Mais detalhes do pedido'
     )
@@ -162,7 +162,7 @@ describe 'Dono de buffet vê pedidos' do
       client: client,
       buffet: buffet,
       event: event,
-      date: 1.day.from_now,
+      date: weekend_date,
       quantity: 12,
       details: 'Mais detalhes do pedido'
     )
@@ -171,7 +171,7 @@ describe 'Dono de buffet vê pedidos' do
       client: second_client,
       buffet: second_buffet,
       event: second_event,
-      date: 1.day.from_now,
+      date: weekend_date,
       quantity: 100,
       details: 'Mais detalhes do pedido'
     )

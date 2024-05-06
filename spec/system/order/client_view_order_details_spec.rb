@@ -52,7 +52,7 @@ describe 'Cliente vê detalhes de um pedido' do
       client: client,
       buffet: buffet,
       event: event,
-      date: 1.day.from_now,
+      date: weekend_date,
       quantity: 15,
       details: 'Mais detalhes do pedido'
     )
@@ -61,7 +61,7 @@ describe 'Cliente vê detalhes de um pedido' do
       client: client,
       buffet: buffet,
       event: event,
-      date: 1.day.from_now,
+      date: weekend_date,
       quantity: 19,
       details: 'Mais detalhes do segundo pedido'
     )
@@ -74,7 +74,7 @@ describe 'Cliente vê detalhes de um pedido' do
     expect(page).not_to have_content "#{second_order.code}"
     expect(page).not_to have_content '60'
     expect(page).to have_content "Pedido #{order.code}"
-    expect(page).to have_content "#{I18n.localize(1.day.from_now.to_date)}"
+    expect(page).to have_content "#{I18n.localize(weekend_date.to_date)}"
     expect(page).to have_content '15'
     expect(page).to have_content 'Aguardando avaliação do buffet'
   end
@@ -130,7 +130,7 @@ describe 'Cliente vê detalhes de um pedido' do
       client: client,
       buffet: buffet,
       event: event,
-      date: 1.day.from_now,
+      date: weekend_date,
       quantity: 15,
       details: 'Mais detalhes do pedido'
     )
@@ -146,7 +146,7 @@ describe 'Cliente vê detalhes de um pedido' do
       client: second_client,
       buffet: buffet,
       event: event,
-      date: 1.day.from_now,
+      date: weekend_date,
       quantity: 19,
       details: 'Mais detalhes do segundo pedido'
     )

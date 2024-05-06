@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
       :event_id,
       :date,
       :quantity,
-      :details
+      :details,
     ))
     @order.client = current_client
     @order.buffet = Buffet.find(params[:buffet_id])
@@ -78,6 +78,15 @@ class OrdersController < ApplicationController
     end
 
     @order = check_order
+
+    event = Event.find(@order.event_id)
+    people = (@order.quantity - event.min_quantity).to_f
+
+    if @order.date.wday >= 1 && @order.date.wday <= 5
+      @order.full_price = event.weekday_base_price.to_f + (event.weekday_additional_price_person.to_f * people)
+    else
+      @order.full_price = event.weekend_base_price.to_f + (event.weekend_additional_price_person.to_f * people)
+    end
   end
 
   def confirm
@@ -94,7 +103,6 @@ class OrdersController < ApplicationController
 
   def confirm_update
     check_order = Order.find(params[:id])
-    puts check_order.status
 
     if !current_buffet_owner.buffet.orders.include?(check_order)
       return redirect_to unauthorized_path
@@ -102,13 +110,14 @@ class OrdersController < ApplicationController
 
     @order = check_order
 
-    @order.update_attribute(:status, 'Pedido confirmado')
     if @order.update(params.require(:order).permit(
       :payment_method,
       :discount,
       :extra_fee,
-      :fee_or_discount_reason
+      :fee_or_discount_reason,
+      :payment_validity
     ))
+      @order.update_attribute(:status, 'Pedido confirmado')
       redirect_to show_to_buffet_owner_orders_path, notice: 'Pedido confirmado com sucesso'
     else
       @event = Event.find(@order.event_id)

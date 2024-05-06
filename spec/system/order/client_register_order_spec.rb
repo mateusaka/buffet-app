@@ -114,14 +114,14 @@ describe 'Cliente faz um novo pedido' do
     click_on 'ABC omidas'
     click_on 'Reserve'
     select 'Super Evento', from: 'Evento'
-    fill_in 'Data', with: 1.day.from_now
+    fill_in 'Data', with: weekend_date
     fill_in 'Quantidade de pessoas', with: 20
     fill_in 'Detalhes', with: 'No meu local'
     click_on 'Criar Pedido'
 
     expect(page).to have_content 'Pedido realizado com sucesso'
     expect(page).to have_content 'Pedidos'
-    expect(page).to have_content "12ER5AAB - #{I18n.localize(1.day.from_now.to_date)}"
+    expect(page).to have_content "12ER5AAB - #{I18n.localize(weekend_date.to_date)}"
   end
 
   it 'com dados incompletos' do

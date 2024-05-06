@@ -52,7 +52,7 @@ describe 'Dono de buffet aprova pedido' do
       client: client,
       buffet: buffet,
       event: event,
-      date: 1.day.from_now,
+      date: weekend_date,
       quantity: 12,
       details: 'Mais detalhes do pedido'
     )
@@ -122,7 +122,7 @@ describe 'Dono de buffet aprova pedido' do
       client: client,
       buffet: buffet,
       event: event,
-      date: 1.day.from_now,
+      date: weekend_date,
       quantity: 12,
       details: 'Mais detalhes do pedido'
     )
@@ -135,6 +135,7 @@ describe 'Dono de buffet aprova pedido' do
     fill_in 'Forma de pagamento', with: 'PIX'
     fill_in 'Taxa extra', with: 200
     fill_in 'Motivo da taxa extra ou desconto', with: 'Eu sou a lei'
+    fill_in 'Validade do pagamento', with: 1.day.from_now
     click_on 'Confirmar Pedido'
 
     expect(page).not_to have_content 'Erro ao confirmar pedido'

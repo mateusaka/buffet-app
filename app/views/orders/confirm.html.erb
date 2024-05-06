@@ -39,6 +39,10 @@
         <%= form.label :fee_or_discount_reason %> <br>
         <%= form.text_area :fee_or_discount_reason %>
     </div>
+    <div>
+        <%= form.label :payment_validity %> <br>
+        <%= form.date_field :payment_validity %>
+    </div>
     <div class="my-2">
         <%= form.submit 'Confirmar Pedido' %>
     </div>
