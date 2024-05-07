@@ -3,6 +3,8 @@
 <dl>
     <dt>Código</dt>
     <dd><%= @order.code %></dd>
+    <dt>Valor</dt>
+    <dd>$ <%= @order.full_price %></dd>
     <dt>Data</dt>
     <dd><%= l(@order.date) %></dd>
     <dt>Quantidade de pessoas</dt>
@@ -16,5 +18,34 @@
         <dd><span class="text-success"><%= @order.status %></span></dd>
     <% else %>
         <dd><span class="text-danger"><%= @order.status %></span></dd>
+    <% end %>
+
+    <% if @order.payment_method.present? %>
+        <dt>Método de pagamento</dt>
+        <dd><%= @order.payment_method %></dd>
+    <% end %>
+    <% if @order.discount.present? %>
+        <dt>Desconto</dt>
+        <dd>$ <%= @order.discount %></dd>
+    <% end %>
+    <% if @order.extra_fee.present? %>
+        <dt>Taxa extra</dt>
+        <dd>$ <%= @order.extra_fee %></dd>
+    <% end %>
+    <% if @order.fee_or_discount_reason.present? %>
+        <dt>Motivo da taxa extra ou desconto</dt>
+        <dd><%= @order.fee_or_discount_reason %></dd>
+    <% end %>
+    <% if @order.payment_validity.present? %>
+        <dt>Validade do pagamento</dt>
+        <dd><%= l(@order.payment_validity) %></dd>
+
+        <% if @current_date > @order.payment_validity %>
+            <span class="text-danger">Data de pagamento expirou</span>
+        <% elsif @order.payment_done %>
+            <span class="text-primary">Evento será realizado</span>
+        <% else %>
+            <%= link_to 'Pagar', payment_order_path(@order) %>
+        <% end %>
     <% end %>
 </dl>

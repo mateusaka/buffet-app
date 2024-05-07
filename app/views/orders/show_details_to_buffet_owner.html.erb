@@ -41,7 +41,9 @@
         <dd><%= l(@order.payment_validity) %></dd>
     <% end %>
 
-    <% if @order.status == 'Aguardando avaliação do buffet' %>
+    <% if @order.payment_done %>
+        <span class="text-primary">Evento será realizado</span>
+    <% elsif @order.status == 'Aguardando avaliação do buffet' %>
         <%= link_to 'Aprovar', confirm_order_path(@order) %>
         <span class="mx-2">|</span>
         <%= link_to 'Recusar' %>

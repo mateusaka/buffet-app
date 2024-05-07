@@ -9,7 +9,8 @@ class OrdersController < ApplicationController
     :index,
     :new,
     :create,
-    :show
+    :show,
+    :payment
   ]
 
   def index
@@ -48,6 +49,17 @@ class OrdersController < ApplicationController
     end
 
     @order = check_order
+
+    event = Event.find(@order.event_id)
+    people = (@order.quantity - event.min_quantity).to_f
+
+    if @order.date.wday >= 1 && @order.date.wday <= 5
+      @order.full_price = event.weekday_base_price.to_f + (event.weekday_additional_price_person.to_f * people)
+    else
+      @order.full_price = event.weekend_base_price.to_f + (event.weekend_additional_price_person.to_f * people)
+    end
+
+    @current_date = Date.today
   end
 
   def show_to_buffet_owner
@@ -125,5 +137,21 @@ class OrdersController < ApplicationController
       flash.now[:notice] = 'Erro ao confirmar pedido'
       render 'confirm'
     end
+  end
+
+  def payment
+    check_order = Order.find(params[:id])
+
+    if !current_client.orders.include?(check_order)
+      return redirect_to unauthorized_path
+    end
+
+    if check_order.status != 'Pedido confirmado'
+      return redirect_to orders_path, notice: 'Voce ainda não pode realizar essa ação'
+    end
+
+    check_order.update_attribute(:payment_done, true)
+
+    redirect_to orders_path, notice: 'Pagamento realizado com sucesso'
   end
 end

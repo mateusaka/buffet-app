@@ -21,7 +21,9 @@
     <% @orders.each do |order| %>
         <% if order.status != 'Aguardando avaliação do buffet' %>
             <%= link_to order.code, show_details_to_buffet_owner_order_path(order) %> - <%= l(order.date) %> |
-            <% if order.status == 'Pedido confirmado' %>
+            <% if order.payment_done %>
+                <span class="text-primary">Evento será realizado</span>
+            <% elsif order.status == 'Pedido confirmado' %>
                 <span class="text-success"><%= order.status %></span>
             <% else %>
                 <span class="text-danger"><%= order.status %></span>
