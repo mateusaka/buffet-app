@@ -12,12 +12,12 @@
     <dt>Detalhes</dt>
     <dd><%= @order.details %></dd>
     <dt>Status</dt>
-    <% if @order.status == 'Aguardando avaliação do buffet' %>
-        <dd><span class="text-warning"><%= @order.status %></span></dd>
-    <% elsif @order.status == 'Pedido confirmado' %>
-        <dd><span class="text-success"><%= @order.status %></span></dd>
+    <% if t(@order.status) == 'Aguardando avaliação do buffet' %>
+        <dd><span class="text-warning"><%= t(@order.status) %></span></dd>
+    <% elsif t(@order.status) == 'Pedido confirmado' %>
+        <dd><span class="text-success"><%= t(@order.status) %></span></dd>
     <% else %>
-        <dd><span class="text-danger"><%= @order.status %></span></dd>
+        <dd><span class="text-danger"><%= t(@order.status) %></span></dd>
     <% end %>
 
     <% if @order.payment_method.present? %>
@@ -43,7 +43,7 @@
 
     <% if @order.payment_done %>
         <span class="text-primary">Evento será realizado</span>
-    <% elsif @order.status == 'Aguardando avaliação do buffet' %>
+    <% elsif t(@order.status) == 'Aguardando avaliação do buffet' %>
         <%= link_to 'Aprovar', confirm_order_path(@order) %>
         <span class="mx-2">|</span>
         <%= link_to 'Recusar' %>

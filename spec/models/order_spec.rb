@@ -421,7 +421,7 @@ RSpec.describe Order, type: :model do
       )
 
       expect(order.status).not_to be_empty
-      expect(order.status).to eq 'Aguardando avaliação do buffet'
+      expect(I18n.translate(order.status)).to eq 'Aguardando avaliação do buffet'
     end
   end
 

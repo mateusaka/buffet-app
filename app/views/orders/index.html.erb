@@ -7,14 +7,14 @@
         <%= link_to order.code, order_path(order) %> - <%= l(order.date) %> |
         <% if order.payment_done %>
             <span class="text-primary">Evento será realizado</span>
-        <% elsif order.status == 'Aguardando avaliação do buffet'%>
-            <span class="text-warning"><%= order.status %></span>
-        <% elsif order.status == 'Pedido confirmado' %>
-            <span class="text-success"><%= order.status %></span>
+        <% elsif t(order.status) == 'Aguardando avaliação do buffet'%>
+            <span class="text-warning"><%= t(order.status) %></span>
+        <% elsif t(order.status) == 'Pedido confirmado' %>
+            <span class="text-success"><%= t(order.status) %></span>
 
             | <span class="text-warning">Aguardando avaliação do cliente</span>
         <% else %>
-            <span class="text-danger"><%= order.status %></span>
+            <span class="text-danger"><%= t(order.status) %></span>
         <% end %>
         <hr>
     <% end %>

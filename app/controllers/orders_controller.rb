@@ -69,10 +69,10 @@ class OrdersController < ApplicationController
     .where('buffet_id = ?', buffet.id)
 
     @orders.each do |order|
-      next if order.equal_date == true || order.status == 'Pedido cancelado'
+      next if order.equal_date == true || order.canceled?
 
         @orders.each do |inside_order|
-          next if inside_order.equal_date == true || inside_order.status == 'Pedido cancelado'
+          next if inside_order.equal_date == true || inside_order.canceled?
 
           if order != inside_order && order.date == inside_order.date
             order.equal_date = true
@@ -129,7 +129,7 @@ class OrdersController < ApplicationController
       :fee_or_discount_reason,
       :payment_validity
     ))
-      @order.update_attribute(:status, 'Pedido confirmado')
+      @order.confirmed!
       redirect_to show_to_buffet_owner_orders_path, notice: 'Pedido confirmado com sucesso'
     else
       @event = Event.find(@order.event_id)
@@ -146,7 +146,7 @@ class OrdersController < ApplicationController
       return redirect_to unauthorized_path
     end
 
-    if check_order.status != 'Pedido confirmado'
+    if !check_order.confirmed?
       return redirect_to orders_path, notice: 'Voce ainda não pode realizar essa ação'
     end
 

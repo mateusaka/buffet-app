@@ -1,4 +1,7 @@
 pt-BR:
+  waiting: Aguardando avaliação do buffet
+  confirmed: Pedido confirmado
+  canceled: Pedido cancelado
   activerecord:
     models:
       order: Pedido

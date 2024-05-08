@@ -2,6 +2,11 @@ class Order < ApplicationRecord
   belongs_to :client
   belongs_to :buffet
   belongs_to :event
+  enum status: {
+    waiting: 0,
+    confirmed: 1,
+    canceled: 2
+  }
 
   validates :event, :date, :quantity, :details,
             :code, :status, presence: true
@@ -11,16 +16,12 @@ class Order < ApplicationRecord
   validate :check_quantity, :check_date
   validate :check_fee_or_discount, :check_payment_validity, on: :update
 
-  before_validation :generate_code, :generate_status, on: :create
+  before_validation :generate_code, on: :create
 
   attr_accessor :equal_date, :full_price
 
   def generate_code
     self.code = SecureRandom.alphanumeric(8).upcase
-  end
-
-  def generate_status
-    self.status = 'Aguardando avaliação do buffet'
   end
 
   def check_payment_validity

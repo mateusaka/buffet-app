@@ -62,7 +62,7 @@ describe 'Dono de buffet vê pedidos' do
     click_on 'Pedidos'
 
     expect(page).to have_content 'Pedidos para o seu buffet'
-    expect(page).to have_content "#{order.code} - #{I18n.localize(order.date)} | #{order.status} | Aprovar | Recusar"
+    expect(page).to have_content "#{order.code} - #{I18n.localize(order.date)} | #{I18n.translate(order.status)} | Aprovar | Recusar"
   end
 
   it 'e não vê pedido de outros donos de buffet' do
@@ -180,8 +180,8 @@ describe 'Dono de buffet vê pedidos' do
     visit root_path
     click_on 'Pedidos'
 
-    expect(page).not_to have_content "#{second_order.code} - #{I18n.localize(second_order.date)} | #{second_order.status} | Aprovar | Recusar"
+    expect(page).not_to have_content "#{second_order.code} - #{I18n.localize(second_order.date)} | #{I18n.translate(second_order.status)} | Aprovar | Recusar"
     expect(page).to have_content 'Pedidos para o seu buffet'
-    expect(page).to have_content "#{order.code} - #{I18n.localize(order.date)} | #{order.status} | Aprovar | Recusar"
+    expect(page).to have_content "#{order.code} - #{I18n.localize(order.date)} | #{I18n.translate(order.status)} | Aprovar | Recusar"
   end
 end

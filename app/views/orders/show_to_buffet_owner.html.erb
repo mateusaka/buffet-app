@@ -2,9 +2,9 @@
 
 <% if @orders.present? %>
     <% @orders.each do |order| %>
-        <% if order.status == 'Aguardando avaliação do buffet' %>
+        <% if t(order.status) == 'Aguardando avaliação do buffet' %>
             <%= link_to order.code, show_details_to_buffet_owner_order_path(order) %> - <%= l(order.date) %> |
-            <span class="text-warning"><%= order.status %></span>
+            <span class="text-warning"><%= t(order.status) %></span>
 
             <% if order.equal_date %>
                 &#10071; Atenção, existem pedidos com a mesma data
@@ -19,14 +19,14 @@
     <% end %>
 
     <% @orders.each do |order| %>
-        <% if order.status != 'Aguardando avaliação do buffet' %>
+        <% if t(order.status) != 'Aguardando avaliação do buffet' %>
             <%= link_to order.code, show_details_to_buffet_owner_order_path(order) %> - <%= l(order.date) %> |
             <% if order.payment_done %>
                 <span class="text-primary">Evento será realizado</span>
-            <% elsif order.status == 'Pedido confirmado' %>
-                <span class="text-success"><%= order.status %></span>
+            <% elsif t(order.status) == 'Pedido confirmado' %>
+                <span class="text-success"><%= t(order.status) %></span>
             <% else %>
-                <span class="text-danger"><%= order.status %></span>
+                <span class="text-danger"><%= t(order.status) %></span>
             <% end %>
 
             <% if order.equal_date %>
