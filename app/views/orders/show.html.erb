@@ -45,7 +45,7 @@
         <% elsif @order.payment_done %>
             <span class="text-primary">Evento será realizado</span>
         <% else %>
-            <%= link_to 'Pagar', payment_order_path(@order) %>
+            <%= button_to 'Pagar', payment_order_path(@order), class: 'button-to' %>
         <% end %>
     <% end %>
 </dl>

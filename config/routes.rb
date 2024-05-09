@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       get 'show_details_to_buffet_owner'
       get 'confirm'
       put 'confirm_update'
-      get 'payment'
+      post 'payment'
     end
 
     collection do
