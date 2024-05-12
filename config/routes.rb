@@ -29,4 +29,20 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :buffets, only: [:index, :show] do
+        collection do
+          get 'search'
+        end
+      end
+
+      resources :events, only: [:show] do
+        collection do
+          get 'availability'
+        end
+      end
+    end
+  end
 end
