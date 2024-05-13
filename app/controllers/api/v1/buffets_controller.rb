@@ -1,4 +1,4 @@
-class Api::V1::BuffetsController < ActionController::API
+class Api::V1::BuffetsController < Api::V1::ApiController
   def index
     buffets = Buffet.all
 
@@ -12,12 +12,8 @@ class Api::V1::BuffetsController < ActionController::API
   end
 
   def show
-    begin
-      buffet = Buffet.find(params[:id])
+    buffet = Buffet.find(params[:id])
 
-      render status: 200, json: buffet.attributes.except('corporate_name', 'cnpj')
-    rescue
-      render status: 404
-    end
+    render status: 200, json: buffet.attributes.except('corporate_name', 'cnpj')
   end
 end

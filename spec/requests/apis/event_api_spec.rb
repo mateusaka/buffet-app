@@ -314,7 +314,7 @@ describe 'Event API' do
         weekend_additional_price_hour: 90
       )
 
-      get "/api/v1/events/availability?id=1&date=#{Date.today}&quantity=58"
+      get "/api/v1/events/availability?id=1&date=#{weekend_date}&quantity=58"
 
       expect(response.status).to eq 200
       expect(response.content_type).to include 'application/json'
