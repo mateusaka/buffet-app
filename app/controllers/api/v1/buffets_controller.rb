@@ -6,9 +6,9 @@ class Api::V1::BuffetsController < Api::V1::ApiController
   end
 
   def search
-    buffet = Buffet.where(brand_name: params[:name])
+    buffets = Buffet.where(brand_name: params[:name])
 
-    render status: 200, json: buffet
+    render status: 200, json: buffets
   end
 
   def show
