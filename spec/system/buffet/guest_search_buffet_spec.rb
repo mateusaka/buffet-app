@@ -705,4 +705,139 @@ describe 'Visitante busca por um buffet' do
     expect(page).to have_content 'Peixe'
     expect(page).to have_content '75 - 370'
   end
+
+  it 'e encontra varios buffets em ordem alfabética' do
+    buffet_owner = BuffetOwner.create!(
+      name: 'Mateus Buffet Owner',
+      email: 'mateus@gmail.com',
+      password: '123456'
+    )
+
+    buffet = Buffet.create!(
+      brand_name: 'ABC omidas',
+      corporate_name: 'Buffet ABC',
+      cnpj: '112233-4444',
+      phone: '(81) 987658866',
+      email: 'abc@buffet.com',
+      address: 'Avenida das comidas',
+      district: 'Macaxeira',
+      state: 'Pernambuco',
+      city: 'Recife',
+      cep: '52050-333',
+      description: 'Um buffet que cobra por prato quebrado',
+      payment_method: 'PIX',
+      buffet_owner: buffet_owner
+    )
+
+    second_buffet_owner = BuffetOwner.create!(
+      name: 'Mateus2 Buffet Owner',
+      email: 'mateus2@gmail.com',
+      password: '123456'
+    )
+
+    second_buffet = Buffet.create!(
+      brand_name: 'ABC food',
+      corporate_name: 'Number Corp',
+      cnpj: '112233-44442',
+      phone: '(81) 987658866',
+      email: 'abc@buffet.com',
+      address: 'Avenida das comidas',
+      district: 'Macaxeira',
+      state: 'Pernambuco',
+      city: 'Recife',
+      cep: '52050-333',
+      description: 'Um buffet que cobra por prato quebrado',
+      payment_method: 'PIX',
+      buffet_owner: second_buffet_owner
+    )
+
+    third_buffet_owner = BuffetOwner.create!(
+      name: 'Mateus3 Buffet Owner',
+      email: 'mateus3@gmail.com',
+      password: '123456'
+    )
+
+    third_buffet = Buffet.create!(
+      brand_name: 'Luxus Comidas',
+      corporate_name: 'Luxos Corp',
+      cnpj: '112233-44442333',
+      phone: '(81) 987658866',
+      email: 'abc@buffet.com',
+      address: 'Avenida das comidas',
+      district: 'Macaxeira',
+      state: 'Pernambuco',
+      city: 'Recife',
+      cep: '52050-333',
+      description: 'Um buffet que cobra por prato quebrado',
+      payment_method: 'PIX',
+      buffet_owner: third_buffet_owner
+    )
+
+    first_event = Event.create!(
+      name: 'Super Evento',
+      description: 'Super descrição',
+      min_quantity: 20,
+      max_quantity: 50,
+      duration: 60,
+      menu: 'Lagosta',
+      alcoholic_drink: true,
+      party_decoration: false,
+      valet_service: true,
+      local: 'Local do contratante',
+      buffet: buffet,
+      weekend_base_price: 120,
+      weekend_additional_price_person: 50,
+      weekend_additional_price_hour: 30
+    )
+
+    second_event = Event.create!(
+      name: 'Aniversário',
+      description: 'Faça sua festa de aniversário com nosso buffet',
+      min_quantity: 100,
+      max_quantity: 500,
+      duration: 60,
+      menu: 'Caviar',
+      alcoholic_drink: false,
+      party_decoration: false,
+      valet_service: false,
+      local: 'Local do buffet',
+      buffet: second_buffet,
+      weekend_base_price: 220,
+      weekend_additional_price_person: 20,
+      weekend_additional_price_hour: 60
+    )
+
+    third_event = Event.create!(
+      name: 'Casamento',
+      description: 'Uma descrição para eventos de casamento',
+      min_quantity: 75,
+      max_quantity: 370,
+      duration: 60,
+      menu: 'Peixe',
+      alcoholic_drink: true,
+      party_decoration: true,
+      valet_service: true,
+      local: 'Local do buffet',
+      buffet: third_buffet,
+      weekday_base_price: 520,
+      weekday_additional_price_person: 70,
+      weekday_additional_price_hour: 10
+    )
+
+    visit root_path
+
+    fill_in 'Buscar buffet', with: 'Recife'
+    click_on 'Buscar'
+
+    expect(page).to have_content 'Resultados da busca por: Recife'
+    within('#search div:nth-of-type(1)') do
+      expect(page).to have_content 'ABC food'
+    end
+    within('#search div:nth-of-type(2)') do
+      expect(page).to have_content 'ABC omidas'
+    end
+    within('#search div:nth-of-type(3)') do
+      expect(page).to have_content 'Luxus Comidas'
+    end
+  end
 end

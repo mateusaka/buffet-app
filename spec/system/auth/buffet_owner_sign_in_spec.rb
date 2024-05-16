@@ -47,4 +47,44 @@ describe 'Dono de buffet entra' do
       expect(current_path).to eq new_buffet_path
     end
   end
+
+  context 'sem sucesso' do
+    it 'email inválido' do
+      buffet_owner = BuffetOwner.create!(
+        name: 'Mateus Buffet Owner',
+        email: 'mateus@gmail.com',
+        password: '123456'
+      )
+
+      visit root_path
+      click_on 'Entrar(dono de buffet)'
+      fill_in 'Email', with: 'test@gmail.com'
+      fill_in 'Password', with: 123456
+      click_on 'Log in'
+
+      expect(page).not_to have_content 'test@gmail.com'
+      expect(page).not_to have_content 'Sair'
+      expect(page).to have_content 'Email ou senha inválidos.'
+      expect(page).to have_content 'Entrar(dono de buffet)'
+    end
+
+    it 'senha inválida' do
+      buffet_owner = BuffetOwner.create!(
+        name: 'Mateus Buffet Owner',
+        email: 'mateus@gmail.com',
+        password: '123456'
+      )
+
+      visit root_path
+      click_on 'Entrar(dono de buffet)'
+      fill_in 'Email', with: 'mateus@gmail.com'
+      fill_in 'Password', with: 123457
+      click_on 'Log in'
+
+      expect(page).not_to have_content 'mateus@gmail.com'
+      expect(page).not_to have_content 'Sair'
+      expect(page).to have_content 'Email ou senha inválidos.'
+      expect(page).to have_content 'Entrar(dono de buffet)'
+    end
+  end
 end

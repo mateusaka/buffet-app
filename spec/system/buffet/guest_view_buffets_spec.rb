@@ -109,6 +109,7 @@ describe 'Visitante vê a lista de todos os buffets' do
   it 'e não tem nenhum cadastrado' do
     visit root_path
 
+    expect(page).to have_content 'Cade Buffet?'
     expect(page).to have_content 'Não há buffets disponíveis'
   end
 end

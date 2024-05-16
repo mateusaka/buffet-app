@@ -1,41 +1,48 @@
 <h1>Pedidos para o seu buffet</h1>
 
-<% if @orders.present? %>
+<div id="orders">
+    <% if @orders.present? %>
     <% @orders.each do |order| %>
         <% if t(order.status) == 'Aguardando avaliação do buffet' %>
-            <%= link_to order.code, show_details_to_buffet_owner_order_path(order) %> - <%= l(order.date) %> |
-            <span class="text-warning"><%= t(order.status) %></span>
+            <div>
+                <%= link_to order.code, show_details_to_buffet_owner_order_path(order) %> - <%= l(order.date) %> |
+                <span class="text-warning"><%= t(order.status) %></span>
 
-            <% if order.equal_date %>
-                &#10071; Atenção, existem pedidos com a mesma data
-            <% end %>
+                <% if order.equal_date %>
+                    &#10071; Atenção, existem pedidos com a mesma data
+                <% end %>
 
-            <span class="mx-2">|</span>
-            <%= link_to 'Aprovar', confirm_order_path(order) %>
-            <span class="mx-2">|</span>
-            <%= link_to 'Recusar' %> 
+                <span class="mx-2">|</span>
+                <%= link_to 'Aprovar', confirm_order_path(order) %>
+                <span class="mx-2">|</span>
+                <%= link_to 'Recusar' %>
+            </div>
+
             <hr>
-        <% end %>        
+        <% end %>
     <% end %>
 
     <% @orders.each do |order| %>
         <% if t(order.status) != 'Aguardando avaliação do buffet' %>
-            <%= link_to order.code, show_details_to_buffet_owner_order_path(order) %> - <%= l(order.date) %> |
-            <% if order.payment_done %>
-                <span class="text-primary">Evento será realizado</span>
-            <% elsif t(order.status) == 'Pedido confirmado' %>
-                <span class="text-success"><%= t(order.status) %></span>
-            <% else %>
-                <span class="text-danger"><%= t(order.status) %></span>
-            <% end %>
+            <div>
+                <%= link_to order.code, show_details_to_buffet_owner_order_path(order) %> - <%= l(order.date) %> |
+                <% if order.payment_done %>
+                    <span class="text-primary">Evento será realizado</span>
+                <% elsif t(order.status) == 'Pedido confirmado' %>
+                    <span class="text-success"><%= t(order.status) %></span>
+                <% else %>
+                    <span class="text-danger"><%= t(order.status) %></span>
+                <% end %>
 
-            <% if order.equal_date %>
-                &#10071; Atenção, existem pedidos com a mesma data
-            <% end %>
+                <% if order.equal_date %>
+                    &#10071; Atenção, existem pedidos com a mesma data
+                <% end %>
+            </div>
 
             <hr>
         <% end %>
     <% end %>    
-<% else %>
-    <p>Você ainda não tem pedidos</p>
-<% end %>
+    <% else %>
+        <p>Você ainda não tem pedidos</p>
+    <% end %>
+</div>
