@@ -197,7 +197,7 @@ order5 = Order.create!(
   details: 'Preciso de muita batatinha'
 )
 
-order4 = Order.create!(
+order6 = Order.create!(
   client: client2,
   buffet: buffet1,
   event: event2,
@@ -212,7 +212,7 @@ order4 = Order.create!(
   payment_done: true
 )
 
-order5 = Order.create!(
+order7 = Order.create!(
   client: client1,
   buffet: buffet2,
   event: event3,
