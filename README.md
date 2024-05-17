@@ -42,7 +42,7 @@ rails s
 
 | Parâmetro | Obrigatório | Descrição             |
 |-----------|-------------|-----------------------|
-| `name`    | Sim         | Nome extato do buffet |
+| `name`    | Sim         | Nome exato do buffet |
 
 ### Evento
 

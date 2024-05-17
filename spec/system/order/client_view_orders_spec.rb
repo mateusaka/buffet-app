@@ -154,4 +154,19 @@ describe 'Cliente vê os seus pedidos' do
     expect(page).to have_content 'Pedidos'
     expect(page).to have_content "#{order.code} - #{I18n.localize(order.date)}"
   end
+
+  it 'e não tem nenhum pedido' do
+    client = Client.create!(
+      name: 'Mateus Cliente',
+      cpf: '10365025038',
+      email: 'mateus@cliente.com',
+      password: '123456'
+    )
+
+    login_as(client, scope: :client)
+    visit root_path
+    click_on 'Meus pedidos'
+
+    expect(page).to have_content 'Não há pedidos'
+  end
 end
